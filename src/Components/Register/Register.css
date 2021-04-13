@@ -1,0 +1,59 @@
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="select"] {
+    max-width: 280px;
+}
+
+.btnChooseCIN {
+    padding: 0px 29px !important;
+    font-size: 15px !important;
+    margin-right: 5px;
+}
+
+.btnChooseCS {
+    padding: 0px 19px !important;
+    font-size: 15px !important;
+    margin-left: 5px;
+}
+
+.inputFile {
+    background: #800080;
+    border-radius: 100px;
+}
+
+.inputFile:hover {
+    background: #ff80ed;
+}
+
+[type="file"] {
+    overflow: hidden;
+    max-width: 280px;
+}
+.profilePic{
+    margin-right: 165px;
+    position: relative;
+    top: 7px;
+    background-color: white;
+    z-index: 10;
+    font-size: 14px;;
+    color: rgba(0, 0, 0, 0.54);
+}
+.borderInput{
+    position: relative;
+    bottom: 10px;
+    border: 2px solid #dee2e6!important;
+    border-radius: .25rem!important;
+    padding: 15px 0px;
+    margin: 0px 130px;
+}
+/* .btn-1 {
+    background: #ffd700 !important;
+    box-shadow: 0 6px #ffa500 !important;
+}
+
+.btn-1:hover {
+    box-shadow: 0 0 #ffa500 !important;
+} */

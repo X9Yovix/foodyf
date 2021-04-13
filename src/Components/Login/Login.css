@@ -1,0 +1,15 @@
+.holderIframe {
+    /* margin-left: 390px; */
+    position: absolute;
+    left: 36%;
+    top: 350px;
+    /* top:20%; */
+}
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .holderIframe {
+        position: absolute;
+        left: 0%;
+        bottom: 0%;
+    }
+}

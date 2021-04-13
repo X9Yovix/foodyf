@@ -3,13 +3,13 @@ import { useHistory } from "react-router-dom"
 
 
 const Protected = (props) =>{
-    let Cmp=props.Cmp
+    let Cmp=props.Cmp;
     
-    const history=useHistory('')
+    const history=useHistory("");
 
     useEffect(() => {
         if(!localStorage.getItem('user-informations')){
-            history.push('/Login')
+            history.push('/login');
         }
     })
 
