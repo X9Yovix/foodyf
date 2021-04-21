@@ -60,13 +60,20 @@ const Register = () => {
         event.preventDefault();
     };
 
+    const [test,setTest]=useState();
     const RegisterUser = async () => {
+        console.log(test);
+        console.log("hadi default date ",selectedDate.toLocaleDateString());
+        //const y =selectedDate.replace("/","-");
+        const y =selectedDate.toLocaleDateString().replace(/\//g, "-");
+
+        console.log(y);
         formData.append('id_card', id_card);
         formData.append('first_name', first_name);
         formData.append('last_name', last_name);
         formData.append('picture', picture);
         formData.append('adresse', adresse);
-        formData.append('date_of_birth', selectedDate);
+        formData.append('date_of_birth', y);
         formData.append('phone_number', phone_number);
         formData.append('email', email);
         formData.append('password', values.password);
@@ -81,10 +88,10 @@ const Register = () => {
             .catch(err => console.log(err))
 
     }
-    const [selectedDate, setSelectedDate] = React.useState(new Date('01-01-2003').toLocaleDateString());
+    const [selectedDate, setSelectedDate] = React.useState(new Date('01-01-2003'));
 
     const handleDateChange = (date) => {
-        setSelectedDate(date.toLocaleDateString());
+        setSelectedDate(date);
     };
     return (
         <div>
@@ -99,6 +106,7 @@ const Register = () => {
                 </Snackbar>
                 <div>
                     <h1>Sign Up</h1>
+                    <input type="date" onChange={(e)=>setTest(e.target.value)} />
                     <form>
                         <div className="row">
                             <div className="col-12 mt-3">
