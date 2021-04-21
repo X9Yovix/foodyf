@@ -90,6 +90,7 @@ const Login = () => {
                                 label="Email"
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 error={formik.touched.email && Boolean(formik.errors.email)}
                                 helperText={formik.touched.email && formik.errors.email}
                                 variant="outlined"
@@ -110,6 +111,7 @@ const Login = () => {
                                 className="ml-auto w-25"
                                 type={showPassword ? "text" : "password"}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">

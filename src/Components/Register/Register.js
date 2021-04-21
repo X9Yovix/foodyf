@@ -15,6 +15,9 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+
 const formData = new FormData();
 const Register = () => {
     const [openErr, setOpenErr] = useState(false);
@@ -61,12 +64,15 @@ const Register = () => {
     };
 
     const RegisterUser = async () => {
+        console.log(formik.values);
+        console.log(selectedDate.toLocaleDateString());
+        
         formData.append('id_card', id_card);
         formData.append('first_name', first_name);
         formData.append('last_name', last_name);
         formData.append('picture', picture);
         formData.append('adresse', adresse);
-        formData.append('date_of_birth', selectedDate);
+        formData.append('date_of_birth', selectedDate.toLocaleDateString());
         formData.append('phone_number', phone_number);
         formData.append('email', email);
         formData.append('password', values.password);
@@ -81,16 +87,35 @@ const Register = () => {
             .catch(err => console.log(err))
 
     }
-    const [selectedDate, setSelectedDate] = React.useState(new Date('01-01-2003').toLocaleDateString());
+    const [selectedDate, setSelectedDate] = React.useState(new Date('01-01-2003'));
 
     const handleDateChange = (date) => {
-        setSelectedDate(date.toLocaleDateString());
+        setSelectedDate(date);
     };
+
+    const validationSchema = Yup.object({
+        id_card: Yup
+            .number('Enter your ID CARD')
+            .max(99999999, 'Too Long!')
+            .required('ID CARD is required'),
+        password: Yup
+            .string('Enter your password')
+            .min(8, 'Password should be of minimum 8 characters length')
+            .required('Password is required'),
+    });
+    const formik = useFormik({
+        initialValues: {
+            id_card: '',
+            password: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            //alert(JSON.stringify(values, null, 2));
+        },
+    });
     return (
         <div>
-
             <Header />
-
             <div className="container text-center">
                 <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="error">
@@ -102,7 +127,19 @@ const Register = () => {
                     <form>
                         <div className="row">
                             <div className="col-12 mt-3">
-                                <TextField id="outlined-basic-id" label="ID Card" variant="outlined" className="ml-auto w-25" onChange={(e) => setIdCard(e.target.value)} />
+                            <TextField id="outlined-basic-id" label="ID Card" variant="outlined" className="ml-auto w-25" onChange={(e) => setIdCard(e.target.value)} />
+                                {/* <TextField
+                                id="id_card"
+                                name="id_card"
+                                label="ID CARD"
+                                value={formik.values.id_card}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                error={formik.touched.id_card && Boolean(formik.errors.id_card)}
+                                helperText={formik.touched.id_card && formik.errors.id_card}
+                                variant="outlined"
+                                className="ml-auto w-25"
+                                onChange={(e) => setIdCard(e.target.value)} /> */}
                             </div>
                         </div>
                         <div className="row">
@@ -122,7 +159,6 @@ const Register = () => {
                                 <MuiPickersUtilsProvider utils={DateFnsUtils} >
                                     <Grid container justify="space-around" >
                                         <KeyboardDatePicker
-
                                             margin="normal"
                                             id="date-picker-dialog"
                                             label="Date of Birth"
