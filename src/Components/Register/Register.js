@@ -370,7 +370,7 @@ const Register = () => {
                                 "value": 3
                             },
                             "color": {
-                                "value": ["#BD10E0", "#B8E986", "#50E3C2", "#FFD300", "#E86363"]
+                                "value": "#FFFF",
                             },
                         },
                         "interactivity": {
