@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { IconButton, InputAdornment } from '@material-ui/core';
+import Particles from 'react-particles-js';
 const Login = () => {
 
     const history = useHistory("");
@@ -144,6 +145,25 @@ const Login = () => {
                 </div>
 
             </div>
+            <Particles className="particles"
+                params={{
+                    "particles": {
+                        "number": {
+                            "value": 50
+                        },
+                        "size": {
+                            "value": 3
+                        }
+                    },
+                    "interactivity": {
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "repulse"
+                            }
+                        }
+                    }
+                }} />
         </>
     );
 }
