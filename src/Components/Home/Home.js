@@ -29,7 +29,9 @@ const Home = () => {
 
     return (
         <>
-            <Header />
+            <h1>Home page</h1>
+            <Link to="/orderfood" className='button'>Order Food</Link><br />
+            <Link to="/reservation" className='button'>Reservation</Link>
             <div className="content">
                 <div className="split left">
                     <img src="https://www.thefoodcorridor.com/wp-content/uploads/2019/04/shutterstock_1072334861.jpg" alt="" className="Delivery" />

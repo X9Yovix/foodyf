@@ -14,7 +14,26 @@
     }
 }
 
+.formlogin {
+    z-index: 2;
+}
+
 .particles {
-    background-color: black;
     position: absolute;
+    top: 80px;
+    width: 1536px;
+    height: 672px;
+    z-index: 0;
+
+}
+
+.hnavbar {
+    z-index: 1;
+}
+
+.holder {
+    background-image: linear-gradient(to bottom right, #66a7ff, #81e5fe);
+
+    width: 1536px;
+    height: 672px;
 }

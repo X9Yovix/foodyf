@@ -47,7 +47,7 @@ const Login = () => {
             //alert(JSON.stringify(values, null, 2));
         },
     });
-    
+
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const [showPassword, setShowPassword] = useState(false);
@@ -73,98 +73,101 @@ const Login = () => {
     }
     return (
         <>
-            <Header />
-            <div className='container'>
-                <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="error">
-                        Email/Password is is incorrect
+            <Header className="hnavbar" />
+            <div className="holder">
+
+                <div className='container formlogin'>
+                    <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="error">
+                            Email/Password is is incorrect
                     </Alert>
-                </Snackbar>
-                <div className='col-12'>
-                    <form onSubmit={formik.handleSubmit} className='text-center'>
-                        <h1>Sign In</h1>
-                        <div className='pt-3'>
-                            <TextField
-                                id="email"
-                                name="email"
-                                label="Email"
-                                value={formik.values.email}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.email && Boolean(formik.errors.email)}
-                                helperText={formik.touched.email && formik.errors.email}
-                                variant="outlined"
-                                className="ml-auto w-25"
-                            />
+                    </Snackbar>
+                    <div className='col-12'>
+                        <form onSubmit={formik.handleSubmit} className='text-center'>
+                            <h1>Sign In</h1>
+                            <div className='pt-3'>
+                                <TextField
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.email && Boolean(formik.errors.email)}
+                                    helperText={formik.touched.email && formik.errors.email}
+                                    variant="outlined"
+                                    className="ml-auto w-25"
+                                />
 
-                        </div>
-                        <div className='pt-3'>
+                            </div>
+                            <div className='pt-3'>
 
-                        <TextField
-                                id="password"
-                                name="password"
-                                label="Password"
-                                value={formik.values.password}
-                                error={formik.touched.password && Boolean(formik.errors.password)}
-                                helperText={formik.touched.password && formik.errors.password}
-                                variant="outlined"
-                                className="ml-auto w-25"
-                                type={showPassword ? "text" : "password"}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                            >
-                                                {showPassword ? <Visibility /> : <VisibilityOff />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    )
-                                }}
-                            />
-                        </div>
-                        <div className='pt-3 holderIframe'>
-                            <ReCAPTCHA
-                                sitekey="6LeS-qYaAAAAAE6OE1zZxJ4F_mDiMb-1ASbZEAMh"
-                                onChange={() => setButtonDisabled(false)}
-                            />
-                        </div>
-                        <div className='pt-3'>
-                            <Button color="primary" type="submit" onClick={onClickLogin} disabled={buttonDisabled} >Sign In</Button>
+                                <TextField
+                                    id="password"
+                                    name="password"
+                                    label="Password"
+                                    value={formik.values.password}
+                                    error={formik.touched.password && Boolean(formik.errors.password)}
+                                    helperText={formik.touched.password && formik.errors.password}
+                                    variant="outlined"
+                                    className="ml-auto w-25"
+                                    type={showPassword ? "text" : "password"}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                                >
+                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        )
+                                    }}
+                                />
+                            </div>
+                            <div className='pt-3 holderIframe'>
+                                <ReCAPTCHA
+                                    sitekey="6LeS-qYaAAAAAE6OE1zZxJ4F_mDiMb-1ASbZEAMh"
+                                    onChange={() => setButtonDisabled(false)}
+                                />
+                            </div>
+                            <div className='pt-3'>
+                                <Button color="primary" type="submit" onClick={onClickLogin} disabled={buttonDisabled} >Sign In</Button>
 
-                        </div>
+                            </div>
 
-                        <div className='text-center'>
-                            <Button color="secondary" href="/register" >Sign Up</Button>
-                        </div>
-                    </form>
+                            <div className='text-center'>
+                                <Button color="secondary" href="/register" >Sign Up</Button>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
-
-            </div>
-            <Particles className="particles"
-                params={{
-                    "particles": {
-                        "number": {
-                            "value": 50
+                <Particles className="particles"
+                    params={{
+                        "particles": {
+                            "number": {
+                                "value": 50
+                            },
+                            "size": {
+                                "value": 3
+                            }
                         },
-                        "size": {
-                            "value": 3
-                        }
-                    },
-                    "interactivity": {
-                        "events": {
-                            "onhover": {
-                                "enable": true,
-                                "mode": "repulse"
+                        "interactivity": {
+                            "events": {
+                                "onhover": {
+                                    "enable": true,
+                                    "mode": "repulse"
+                                }
                             }
                         }
-                    }
-                }} />
+                    }} />
+            </div>
+
         </>
     );
 }
