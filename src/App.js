@@ -5,6 +5,10 @@ import Register from './Components/Register/Register'
 import Login from './Components/Login/Login'
 import AddRestaurant from './Components/AddRestaurant/AddRestaurant'
 import Protected from './Components/Protected/Protected'
+import OrderFood from './Components/OrderFood/OrderFood'
+import SearchRestaurant from './Components/SearchRestaurant/SearchRestaurant';
+import Reservation from './Components/Reservation/Reservation';
+
 
 function App() {
   return (
@@ -17,7 +21,9 @@ function App() {
           <Redirect to="/home" />
         </Route> */}
           <Route path="/register" component={Register} />
-
+          <Route path="/search" component={SearchRestaurant} />
+          <Route path="/orderfood" component={OrderFood} />
+          <Route path="/reservation" component={Reservation} />
           <Route path="/addRestaurant">
             <Protected Cmp={AddRestaurant} />
           </Route>

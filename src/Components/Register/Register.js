@@ -22,16 +22,16 @@ const formData = new FormData();
 const Register = () => {
     const [openErr, setOpenErr] = useState(false);
 
-    const [id_card, setIdCard] = useState();
+    /* const [id_card, setIdCard] = useState();
     const [first_name, setFirstName] = useState();
-    const [last_name, setLastName] = useState();
+    const [last_name, setLastName] = useState(); */
     const [picture, setPicture] = useState();
-    const [adresse, setAdresse] = useState();
+    /* const [adresse, setAdresse] = useState();
     const [phone_number, setPhoneNumber] = useState();
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState(); */
 
     const [owner, setOwner] = useState("Client");
-    const handleChange = (event) => {
+    const handleChangeOwner = (event) => {
         setOwner(event.target.value);
     };
 
@@ -45,11 +45,11 @@ const Register = () => {
     const history = useHistory("");
     useEffect(() => {
         if (localStorage.getItem('user-informations')) {
-            history.push('/addRestaurant')
+            history.push('/login')
         }
     })
 
-    const [values, setValues] = React.useState({
+    /* const [values, setValues] = React.useState({
         password: '',
         showPassword: false
     });
@@ -61,35 +61,60 @@ const Register = () => {
     };
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
-    };
+    }; */
 
-    const [test,setTest]=useState();
+    const validationSchema = Yup.object({
+        id_card: Yup
+            .number('The field must be a number')
+            .required('ID Card is required'),
+        first_name: Yup.string()
+            .required('first name is required'),
+        last_name: Yup.string()
+            .required('First name is required'),
+        phone_number: Yup.number()
+            .required('Phone number is required '),
+        adresse: Yup.string()
+            .required('Adresse is required'),
+        email: Yup.string()
+            .required('Email Required'),
+        password: Yup.string()
+            .min(8, 'Password should be of minimum 8 characters length')
+            .required('Password is required'),
+    });
+    const formik = useFormik({
+        initialValues: {
+            id_card: '',
+            first_name: '',
+            last_name: '',
+            phone_number: '',
+            adresse: '',
+            email: '',
+            password: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            //alert(JSON.stringify(values, null, 2));
+        },
+    });
+
+    /* const [test,setTest]=useState(); */
     const RegisterUser = async () => {
-<<<<<<< HEAD
-        console.log(formik.values);
-        console.log(selectedDate.toLocaleDateString());
-        
-=======
-        console.log(test);
-        console.log("hadi default date ",selectedDate.toLocaleDateString());
+        //console.log(test);
+        //console.log("hadi default date ",selectedDate.toLocaleDateString());
         //const y =selectedDate.replace("/","-");
-        const y =selectedDate.toLocaleDateString().replace(/\//g, "-");
+        const y = selectedDate.toLocaleDateString().replace(/\//g, "-");
 
         console.log(y);
->>>>>>> c9339d0b35bcc588061a9785858c4bae904000cd
-        formData.append('id_card', id_card);
-        formData.append('first_name', first_name);
-        formData.append('last_name', last_name);
+        console.log(formik.values.id_card);
+        formData.append('id_card', formik.values.id_card);
+        formData.append('first_name', formik.values.first_name);
+        formData.append('last_name', formik.values.last_name);
         formData.append('picture', picture);
-        formData.append('adresse', adresse);
-<<<<<<< HEAD
-        formData.append('date_of_birth', selectedDate.toLocaleDateString());
-=======
+        formData.append('adresse', formik.values.adresse);
         formData.append('date_of_birth', y);
->>>>>>> c9339d0b35bcc588061a9785858c4bae904000cd
-        formData.append('phone_number', phone_number);
-        formData.append('email', email);
-        formData.append('password', values.password);
+        formData.append('phone_number', formik.values.phone_number);
+        formData.append('email', formik.values.email);
+        formData.append('password', formik.values.password);
         formData.append('owner', owner);
 
         axios.post('http://localhost:8000/api/register', formData)
@@ -107,7 +132,11 @@ const Register = () => {
         setSelectedDate(date);
     };
 
-    const validationSchema = Yup.object({
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+    const [showPassword, setShowPassword] = useState(false);
+
+    /* const validationSchema = Yup.object({
         id_card: Yup
             .number('Enter your ID CARD')
             .max(99999999, 'Too Long!')
@@ -124,9 +153,9 @@ const Register = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            //alert(JSON.stringify(values, null, 2));
+            alert(JSON.stringify(values, null, 2));
         },
-    });
+    }); */
     return (
         <div>
             <Header />
@@ -138,31 +167,52 @@ const Register = () => {
                 </Snackbar>
                 <div>
                     <h1>Sign Up</h1>
-                    <input type="date" onChange={(e)=>setTest(e.target.value)} />
+                    {/* <input type="date" onChange={(e)=>setTest(e.target.value)} /> */}
                     <form>
                         <div className="row">
                             <div className="col-12 mt-3">
-                            <TextField id="outlined-basic-id" label="ID Card" variant="outlined" className="ml-auto w-25" onChange={(e) => setIdCard(e.target.value)} />
-                                {/* <TextField
-                                id="id_card"
-                                name="id_card"
-                                label="ID CARD"
-                                value={formik.values.id_card}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.id_card && Boolean(formik.errors.id_card)}
-                                helperText={formik.touched.id_card && formik.errors.id_card}
-                                variant="outlined"
-                                className="ml-auto w-25"
-                                onChange={(e) => setIdCard(e.target.value)} /> */}
+                                {/* <TextField id="outlined-basic-id" label="ID Card" variant="outlined" className="ml-auto w-25" onChange={(e) => setIdCard(e.target.value)} /> */}
+                                <TextField
+                                    id="id_card"
+                                    name="id_card"
+                                    label="ID CARD"
+                                    value={formik.values.id_card}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.id_card && Boolean(formik.errors.id_card)}
+                                    helperText={formik.touched.id_card && formik.errors.id_card}
+                                    variant="outlined"
+                                    className="ml-auto w-25" />
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-6 mt-3">
-                                <TextField id="outlined-basic-first-name" label="First Name" variant="outlined" className="ml-auto w-50" onChange={(e) => setFirstName(e.target.value)} />
+                                <TextField
+                                    id="first_name"
+                                    name="first_name"
+                                    label="First Name"
+                                    value={formik.values.first_name}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.first_name && Boolean(formik.errors.first_name)}
+                                    helperText={formik.touched.first_name && formik.errors.first_name}
+                                    variant="outlined"
+                                    className="ml-auto w-50" />
+                                {/* <TextField id="outlined-basic-first-name" label="First Name" variant="outlined" className="ml-auto w-50" onChange={(e) => setFirstName(e.target.value)} /> */}
                             </div>
                             <div className="col-6 mt-3">
-                                <TextField id="outlined-basic-last-name" label="Last Name" variant="outlined" className="ml-auto w-50" onChange={(e) => setLastName(e.target.value)} />
+                                <TextField
+                                    id="last_name"
+                                    name="last_name"
+                                    label="Last Name"
+                                    value={formik.values.last_name}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.last_name && Boolean(formik.errors.last_name)}
+                                    helperText={formik.touched.last_name && formik.errors.last_name}
+                                    variant="outlined"
+                                    className="ml-auto w-50" />
+                                {/* <TextField id="outlined-basic-last-name" label="Last Name" variant="outlined" className="ml-auto w-50" onChange={(e) => setLastName(e.target.value)} /> */}
                             </div>
                         </div>
                         <div className="row">
@@ -191,25 +241,63 @@ const Register = () => {
                         </div>
                         <div className="row">
                             <div className="col-6 mt-3">
-                                <TextField id="outlined-basic-adresse" label="Adresse" variant="outlined" className="ml-auto w-50" onChange={(e) => setAdresse(e.target.value)} />
+                                <TextField
+                                    id="adresse"
+                                    name="adresse"
+                                    label="Adresse"
+                                    value={formik.values.adresse}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.adresse && Boolean(formik.errors.adresse)}
+                                    helperText={formik.touched.adresse && formik.errors.adresse}
+                                    variant="outlined"
+                                    className="ml-auto w-50"
+                                />
+                                {/* <TextField id="outlined-basic-adresse" label="Adresse" variant="outlined" className="ml-auto w-50" onChange={(e) => setAdresse(e.target.value)} /> */}
                             </div>
 
                             <div className="col-6 mt-3">
-                                <TextField id="outlined-basic-phone-number" label="Phone Number" variant="outlined" className="mr-auto w-50" onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <TextField
+                                    id="phone_number"
+                                    name="phone_number"
+                                    label="Phone Number"
+                                    value={formik.values.phone_number}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.phone_number && Boolean(formik.errors.phone_number)}
+                                    helperText={formik.touched.phone_number && formik.errors.phone_number}
+                                    variant="outlined"
+                                    className="ml-auto w-50"
+                                />
+                                {/* <TextField id="outlined-basic-phone-number" label="Phone Number" variant="outlined" className="mr-auto w-50" onChange={(e) => setPhoneNumber(e.target.value)} /> */}
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-6 mt-3">
-                                <TextField id="outlined-basic-email" label="Email" variant="outlined" className="ml-auto w-50" onChange={(e) => setEmail(e.target.value)} />
+                            <TextField
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.email && Boolean(formik.errors.email)}
+                                    helperText={formik.touched.email && formik.errors.email}
+                                    variant="outlined"
+                                    className="ml-auto w-50"
+                                />
+                                {/* <TextField id="outlined-basic-email" label="Email" variant="outlined" className="ml-auto w-50" onChange={(e) => setEmail(e.target.value)} /> */}
                             </div>
                             <div className="col-6 mt-3">
-                                <FormControl className="" variant="outlined">
+                                {/* <FormControl className="" variant="outlined">
                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                     <OutlinedInput
                                         id="outlined-adornment-password"
                                         type={values.showPassword ? 'text' : 'password'}
                                         value={values.password}
                                         onChange={handleChangePass('password')}
+                                        error={formik.touched.password && Boolean(formik.errors.password)}
+                                        helperText={formik.touched.password && formik.errors.password}
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
@@ -224,7 +312,33 @@ const Register = () => {
                                         }
                                         labelWidth={70}
                                     />
-                                </FormControl>
+                                </FormControl> */}
+                                <TextField
+                                id="password"
+                                name="password"
+                                label="Password"
+                                value={formik.values.password}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.touched.password && formik.errors.password}
+                                variant="outlined"
+                                className="ml-auto w-50"
+                                type={showPassword ? "text" : "password"}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    )
+                                }}
+                            />
                                 {/* <TextField id="outlined-basic" label="Password" variant="outlined" className="mr-auto w-50" onChange={(e) => setPassword(e.target.value)} /> */}
                             </div>
                         </div>
@@ -232,7 +346,7 @@ const Register = () => {
                             <div className="col-12 mt-3">
                                 <FormControl component="fieldset">
                                     <FormLabel component="legend"> Choose option </FormLabel>
-                                    <RadioGroup aria-label="owner" name="owner" value={owner} onChange={handleChange}>
+                                    <RadioGroup aria-label="owner" name="owner" value={owner} onChange={handleChangeOwner}>
                                         <FormControlLabel value="Client" control={<Radio color="primary" />} label="Client" />
                                         <FormControlLabel value="Owner" control={<Radio color="secondary" />} label="Restaurant Owner" />
                                     </RadioGroup>
