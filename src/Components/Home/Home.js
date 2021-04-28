@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from "../Header/Header";
-
+import { Link } from 'react-router-dom';
 import './Home.css';
 const Home = () => {
 
@@ -34,18 +34,17 @@ const Home = () => {
                 <div className="split left">
                     <img src="https://www.thefoodcorridor.com/wp-content/uploads/2019/04/shutterstock_1072334861.jpg" alt="" className="Delivery" />
                     <div className="text">
-                        <button className="button">Delivery</button>
+                        <Link to="/orderfood" className='button'>Order Food</Link>
                     </div>
                 </div>
                 <div className="split right">
                     <img src="https://cdn.theculturetrip.com/wp-content/uploads/2017/08/restaurant-691397_1280.jpg" alt="" className="Reservation" />
                     <div className="text">
-                        <button className="button">Reservation </button>
+                        <Link to="/reservation" className='button'>Reservation</Link>
                     </div>
                 </div>
             </div>
         </>
     );
 }
-
 export default Home

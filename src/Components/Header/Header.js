@@ -18,6 +18,7 @@ const Header = () => {
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="/"><Logo /></Navbar.Brand>
                 <Nav className='ml-auto'>
+                <Link to="/search" className='nav-link'>Search</Link>
                     {
                         localStorage.getItem('user-informations') ?
                             <>

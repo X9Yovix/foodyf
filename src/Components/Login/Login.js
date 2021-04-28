@@ -18,7 +18,7 @@ const Login = () => {
     const history = useHistory("");
     useEffect(() => {
         if (localStorage.getItem('user-informations')) {
-            history.push('/addRestaurant')
+            history.push('/home')
         }
     })
 
@@ -34,10 +34,8 @@ const Login = () => {
             .string('Enter your email')
             .email('Enter a valid email')
             .required('Email is required'),
-        password: Yup
-            .string('Enter your password')
-            .min(8, 'Password should be of minimum 8 characters length')
-            .required('Password is required'),
+        password: Yup.string()
+            .required('Required'),
     });
     const formik = useFormik({
         initialValues: {
@@ -49,6 +47,7 @@ const Login = () => {
             //alert(JSON.stringify(values, null, 2));
         },
     });
+    
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const [showPassword, setShowPassword] = useState(false);
@@ -91,6 +90,7 @@ const Login = () => {
                                 label="Email"
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 error={formik.touched.email && Boolean(formik.errors.email)}
                                 helperText={formik.touched.email && formik.errors.email}
                                 variant="outlined"
@@ -100,7 +100,7 @@ const Login = () => {
                         </div>
                         <div className='pt-3'>
 
-                            <TextField
+                        <TextField
                                 id="password"
                                 name="password"
                                 label="Password"
@@ -111,6 +111,7 @@ const Login = () => {
                                 className="ml-auto w-25"
                                 type={showPassword ? "text" : "password"}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
