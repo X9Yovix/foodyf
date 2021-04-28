@@ -19,6 +19,26 @@ input[type="select"] {
     margin-left: 5px;
 }
 
+.particles {
+    position: absolute;
+    top: 80px;
+    width: 1536px;
+    height: 672px;
+    z-index: 0;
+
+}
+
+.hnavbar {
+    z-index: 1;
+}
+
+.holder {
+    background-image: linear-gradient(to bottom right, #66a7ff, #81e5fe);
+
+    width: 1536px;
+    height: 672px;
+}
+
 .inputFile {
     background: #800080;
     border-radius: 100px;
@@ -32,23 +52,27 @@ input[type="select"] {
     overflow: hidden;
     max-width: 280px;
 }
-.profilePic{
+
+.profilePic {
     margin-right: 165px;
     position: relative;
     top: 7px;
     background-color: white;
     z-index: 10;
-    font-size: 14px;;
+    font-size: 14px;
+    ;
     color: rgba(0, 0, 0, 0.54);
 }
-.borderInput{
+
+.borderInput {
     position: relative;
     bottom: 10px;
-    border: 2px solid #dee2e6!important;
-    border-radius: .25rem!important;
+    border: 2px solid #dee2e6 !important;
+    border-radius: .25rem !important;
     padding: 15px 0px;
     margin: 0px 130px;
 }
+
 /* .btn-1 {
     background: #ffd700 !important;
     box-shadow: 0 6px #ffa500 !important;
