@@ -19,10 +19,23 @@ input[type="select"] {
     margin-left: 5px;
 }
 
+.particlesss {
+    position: absolute;
+    z-index: -10;
+    top:0px;
+    width: 100%;
+    height: 100%;
+    /*background-color: #FFF;*/
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+/* 
 .particles {
     position: absolute;
     top: 80px;
-    width: 1536px;
+    width: 1500px;
     height: 672px;
     z-index: 0;
 
@@ -34,10 +47,10 @@ input[type="select"] {
 
 .holder {
     background-image: linear-gradient(to bottom right, #66a7ff, #81e5fe);
-
-    width: 1536px;
+    z-index: 10;
+    width: 1500px;
     height: 672px;
-}
+} */
 
 .inputFile {
     background: #800080;
