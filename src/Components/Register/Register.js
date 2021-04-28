@@ -17,6 +17,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import Particles from 'react-particles-js';
 
 const formData = new FormData();
 const Register = () => {
@@ -159,6 +160,25 @@ const Register = () => {
     return (
         <div>
             <Header />
+            <Particles className="particles"
+                params={{
+                    "particles": {
+                        "number": {
+                            "value": 50
+                        },
+                        "size": {
+                            "value": 3
+                        }
+                    },
+                    "interactivity": {
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "repulse"
+                            }
+                        }
+                    }
+                }} />
             <div className="container text-center">
                 <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="error">
@@ -257,7 +277,7 @@ const Register = () => {
                             </div>
 
                             <div className="col-6 mt-3">
-                            <TextField
+                                <TextField
                                     id="phone_number"
                                     name="phone_number"
                                     label="Phone Number"
@@ -274,7 +294,7 @@ const Register = () => {
                         </div>
                         <div className="row">
                             <div className="col-6 mt-3">
-                            <TextField
+                                <TextField
                                     id="email"
                                     name="email"
                                     label="Email"
@@ -314,31 +334,31 @@ const Register = () => {
                                     />
                                 </FormControl> */}
                                 <TextField
-                                id="password"
-                                name="password"
-                                label="Password"
-                                value={formik.values.password}
-                                error={formik.touched.password && Boolean(formik.errors.password)}
-                                helperText={formik.touched.password && formik.errors.password}
-                                variant="outlined"
-                                className="ml-auto w-50"
-                                type={showPassword ? "text" : "password"}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                            >
-                                                {showPassword ? <Visibility /> : <VisibilityOff />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    )
-                                }}
-                            />
+                                    id="password"
+                                    name="password"
+                                    label="Password"
+                                    value={formik.values.password}
+                                    error={formik.touched.password && Boolean(formik.errors.password)}
+                                    helperText={formik.touched.password && formik.errors.password}
+                                    variant="outlined"
+                                    className="ml-auto w-50"
+                                    type={showPassword ? "text" : "password"}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                                >
+                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        )
+                                    }}
+                                />
                                 {/* <TextField id="outlined-basic" label="Password" variant="outlined" className="mr-auto w-50" onChange={(e) => setPassword(e.target.value)} /> */}
                             </div>
                         </div>
