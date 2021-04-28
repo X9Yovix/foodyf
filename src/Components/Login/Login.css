@@ -17,7 +17,7 @@
 .particlesss {
     position: absolute;
     z-index: -10;
-    top:0px;
+    top: 0px;
     width: 100%;
     height: 100%;
     /*background-color: #FFF;*/
@@ -25,7 +25,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
-  }
+    background-image: linear-gradient(to bottom right, #66a7ff, #81e5fe);
+}
+
 .formlogin {
     /* position: relative;
     z-index: 200; */
@@ -47,5 +49,5 @@
 .holder {
     /* background-image: linear-gradient(to bottom right, #66a7ff, #81e5fe);
     /* width: 1495px;
-    height: 681px; */ 
+    height: 681px; */
 }

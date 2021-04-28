@@ -161,7 +161,7 @@ const Register = () => {
         <div>
             <Header />
             <div className="holder">
-                <div className="container text-center">
+                <div className="container text-center registerGroupe">
                     <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="error">
                             This is an error message!
@@ -370,7 +370,7 @@ const Register = () => {
                                 "value": 3
                             },
                             "color": {
-                                "value": ["#BD10E0", "#B8E986", "#50E3C2", "#FFD300", "#E86363"]
+                                "value": "#FFFF",
                             },
                         },
                         "interactivity": {
