@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@material-ui/core";
 import Header from "../Header/Header";
 const Contact = () => {
     return (
@@ -29,20 +30,20 @@ const Contact = () => {
                         <form action="#" class="">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" placeholder="First Name" />
+                                    <input type="text" className="form-control" placeholder="First Name" />
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" placeholder="Last Name" />
+                                    <input type="text" className="form-control" placeholder="Last Name" />
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" placeholder="Your Email" />
+                                    <input type="text" className="form-control" placeholder="Your Email" />
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" placeholder="Phone Number" />
+                                    <input type="text" className="form-control" placeholder="Phone Number" />
                                 </div>
                             </div>
-                            <textarea placeholder="Message"></textarea>
-                            <button type="submit" class="site-btn">SEND MESSAGE</button>
+                            <textarea placeholder="Message" className="form-control"></textarea>
+                            <Button color="primary">SEND MESSAGE</Button>
                         </form>
                     </div>
                 </div>
