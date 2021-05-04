@@ -12,16 +12,15 @@ const Contact = () => {
                             <div class="">
                                 <h4>Contact Us</h4>
                                 <ul>
-                                    <li><i class="fa fa-send"></i> 40 Baria Sreet 133/2 NewYork City</li>
-                                    <li><i class="fa fa-envelope"></i> hello@atheme.com</li>
-                                    <li><i class="fa fa-phone"></i> +88-111-555-666</li>
+                                    <li><i class="fa fa-send"></i> Avenue de France, Radès</li>
+                                    <li><i class="fa fa-envelope"></i> contact@foody.tn</li>
+                                    <li><i class="fa fa-phone"></i> +216 12345678</li>
                                 </ul>
                             </div>
                             <div class="">
                                 <h4>Opening Hours</h4>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Mon - Fri: 6:30am - 07:45pm</li>
-                                    <li><i class="fa fa-clock-o"></i> Sat - Sun: 8:30am - 05:45pm</li>
+                                    <li><i class="fa fa-clock-o"></i> Mon - Fri: 8:00am - 6:00pm</li>
                                 </ul>
                             </div>
                         </div>
