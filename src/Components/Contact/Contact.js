@@ -25,19 +25,19 @@ const Contact = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 col-md-8">
-                        <form action="#" class="contact__form">
+                    <div class="col-md-8">
+                        <form action="#" class="">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-md-6">
                                     <input type="text" placeholder="First Name" />
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-md-6">
                                     <input type="text" placeholder="Last Name" />
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-md-6">
                                     <input type="text" placeholder="Your Email" />
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-md-6">
                                     <input type="text" placeholder="Phone Number" />
                                 </div>
                             </div>
