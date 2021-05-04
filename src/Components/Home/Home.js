@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
 import './Home.css';
+
 const Home = () => {
     return (
         <>
+            <div className="header_navbar">
+                <Header />
+            </div>
             <div className="wrapper">
 
                 <div className="side left">
@@ -13,9 +18,9 @@ const Home = () => {
                         <Link to="/orderfood" className='button'>Order Food</Link>
                     </div>
                 </div>
-                <div className="middle">
-                <div className="imagelogo logo"></div>
-                </div>
+                {/* <div className="middle">
+                    <div className="imagelogo logo"></div>
+                </div> */}
                 <div className="side right">
                     <div className="image reservation"></div>
                     <div className="caption">

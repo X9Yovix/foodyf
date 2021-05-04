@@ -15,7 +15,7 @@ const Header = () => {
     }
     return (
         <>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="bg-transparent" >
                 <Navbar.Brand href="/"><Logo /></Navbar.Brand>
                 
                 <Nav className='ml-auto'>

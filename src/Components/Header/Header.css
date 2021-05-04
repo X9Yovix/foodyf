@@ -1,3 +1,11 @@
 .navbar-expand .navbar-nav .dropdown-menu {
     left: -74px !important;
 }
+
+.navbar-nav .nav-link {
+    color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #00F !important;
+}
