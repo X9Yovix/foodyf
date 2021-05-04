@@ -11,7 +11,8 @@ import Reservation from './Components/Reservation/Reservation';
 import UpdateRestaurant from './Components/UpdateRestaurant/UpdateRestaurant';
 import LoginJdid from './Components/LoginJdid/LoginJdid';
 import Contact from './Components/Contact/Contact';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './fontawesome/fontawesome';
 
 function App() {
   return (

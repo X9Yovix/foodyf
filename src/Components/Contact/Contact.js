@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 import Header from "../Header/Header";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Contact = () => {
     return (
         <div>
@@ -13,8 +14,8 @@ const Contact = () => {
                             <div class="">
                                 <h4>Contact Us</h4>
                                 <ul>
-                                    <li><i class="fa fa-send"></i> Avenue de France, Radès</li>
-                                    <li><i class="fa fa-envelope"></i> contact@foody.tn</li>
+                                    <li><FontAwesomeIcon icon="send"/><i class="fa fa-send"></i> Avenue de France, Radès</li>
+                                    <li><FontAwesomeIcon icon={['fal', 'code']} size="2.5x" /><i class="fa fa-envelope"></i> contact@foody.tn</li>
                                     <li><i class="fa fa-phone"></i> +216 12345678</li>
                                 </ul>
                             </div>
