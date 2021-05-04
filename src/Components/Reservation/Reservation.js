@@ -3,11 +3,11 @@ function Reservation() {
     return (
         <>
             <Header />
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="hero__text">
-                            <div class="section-title">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="hero__text">
+                            <div className="section-title">
                                 <h2>Discover The Best Services Near You</h2>
                             </div>
                             <div class="hero__search__form">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../Header/Header'
 import { useHistory } from 'react-router-dom'
 import './Register.css'
-import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button, TextField, IconButton, OutlinedInput, InputLabel, InputAdornment } from '@material-ui/core';
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button, TextField, IconButton, InputAdornment } from '@material-ui/core';
 
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
@@ -77,6 +77,7 @@ const Register = () => {
         adresse: Yup.string()
             .required('Adresse is required'),
         email: Yup.string()
+            .email("must be valid email")
             .required('Email Required'),
         password: Yup.string()
             .min(8, 'Password should be of minimum 8 characters length')
@@ -168,11 +169,11 @@ const Register = () => {
                     </Alert>
                     </Snackbar>
                     <div>
-                        <h1>Sign Up</h1>
+                        <h3>Sign Up</h3>
                         {/* <input type="date" onChange={(e)=>setTest(e.target.value)} /> */}
                         <form>
                             <div className="row">
-                                <div className="col-12 mt-3">
+                                <div className="col-12 mt-1">
                                     {/* <TextField id="outlined-basic-id" label="ID Card" variant="outlined" className="ml-auto w-25" onChange={(e) => setIdCard(e.target.value)} /> */}
                                     <TextField
                                         id="id_card"
@@ -188,7 +189,7 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-6 mt-3">
+                                <div className="col-6 mt-1">
                                     <TextField
                                         id="first_name"
                                         name="first_name"
@@ -202,7 +203,7 @@ const Register = () => {
                                         className="ml-auto w-50" />
                                     {/* <TextField id="outlined-basic-first-name" label="First Name" variant="outlined" className="ml-auto w-50" onChange={(e) => setFirstName(e.target.value)} /> */}
                                 </div>
-                                <div className="col-6 mt-3">
+                                <div className="col-6 mt-1">
                                     <TextField
                                         id="last_name"
                                         name="last_name"
@@ -218,7 +219,7 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-6 mt-3">
+                                <div className="col-6 mt-1">
                                     <label className="profilePic" >Profile picture</label>
                                     <div className="borderInput"><input id="multiple_input_group" type="file" onChange={(e) => setPicture(e.target.files[0])} /></div>
                                 </div>
@@ -242,7 +243,7 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-6 mt-3">
+                                <div className="col-6 mt-1">
                                     <TextField
                                         id="adresse"
                                         name="adresse"
@@ -290,7 +291,7 @@ const Register = () => {
                                     />
                                     {/* <TextField id="outlined-basic-email" label="Email" variant="outlined" className="ml-auto w-50" onChange={(e) => setEmail(e.target.value)} /> */}
                                 </div>
-                                <div className="col-6 mt-3">
+                                <div className="col-6 mt-1">
                                     {/* <FormControl className="" variant="outlined">
                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                     <OutlinedInput
@@ -345,7 +346,7 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-12 mt-3">
+                                <div className="col-12 mt-1">
                                     <FormControl component="fieldset">
                                         <FormLabel component="legend"> Choose option </FormLabel>
                                         <RadioGroup aria-label="owner" name="owner" value={owner} onChange={handleChangeOwner}>

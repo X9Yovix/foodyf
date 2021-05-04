@@ -8,6 +8,8 @@ import Protected from './Components/Protected/Protected'
 import OrderFood from './Components/OrderFood/OrderFood'
 import SearchRestaurant from './Components/SearchRestaurant/SearchRestaurant';
 import Reservation from './Components/Reservation/Reservation';
+import UpdateRestaurant from './Components/UpdateRestaurant/UpdateRestaurant';
+import LoginJdid from './Components/LoginJdid/LoginJdid';
 
 
 function App() {
@@ -27,7 +29,8 @@ function App() {
           <Route path="/addRestaurant">
             <Protected Cmp={AddRestaurant} />
           </Route>
-
+          <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
+          <Route path="/loginjdid" component={LoginJdid} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>

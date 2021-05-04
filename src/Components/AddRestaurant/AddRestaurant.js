@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Header from '../Header/Header'
 import { FormControlLabel, FormGroup, TextField, Checkbox, Button } from '@material-ui/core';
 import LocalShippingRoundedIcon from '@material-ui/icons/LocalShippingRounded';
@@ -18,7 +18,11 @@ function AddRestaurant() {
         Takeout: false,
         Reservation: false,
     });
-
+    useEffect(() => {
+        if (localStorage.getItem('restaurant-created')) {
+            history.push('/home')
+        }
+    })
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
@@ -29,9 +33,11 @@ function AddRestaurant() {
 
     const setRestaurant = () => {
         let data = JSON.parse(localStorage.getItem('user-informations'));
+        let slug = restaurantName.replace(/ /g, "_");
         //console.log(JSON.stringify(state));
         let jsonState = JSON.stringify(state);
         formData.append('restaurant_name', restaurantName);
+        formData.append('slug', slug);
         formData.append('description', description);
         formData.append('adresse', adresse);
         formData.append('picture', picture);
@@ -43,10 +49,13 @@ function AddRestaurant() {
         /*formData.forEach((key,value) => {
             console.log(key,value)
         });*/
+        
+        console.log(slug)
         axios.post('http://localhost:8000/api/addres', formData)
             .then(res => {
                 console.log(res)
                 history.push('/home');
+                localStorage.setItem("restaurant-created",slug);
             })
             .catch(err => console.log(err))
     }

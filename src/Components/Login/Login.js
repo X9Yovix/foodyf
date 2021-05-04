@@ -62,7 +62,7 @@ const Login = () => {
                     setOpenErr(true);
                 } else {
                     localStorage.setItem("user-informations", JSON.stringify(res));
-                    history.push('/addRestaurant');
+                    history.push('/home');
                 }
             })
             .catch(err => {
@@ -87,6 +87,7 @@ const Login = () => {
                             <h1>Sign In</h1>
                             <div className='pt-3'>
                                 <TextField
+                                autoComplete
                                     id="email"
                                     name="email"
                                     label="Email"

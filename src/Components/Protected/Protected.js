@@ -8,7 +8,7 @@ const Protected = (props) =>{
     const history=useHistory("");
 
     useEffect(() => {
-        if(!localStorage.getItem('user-informations')){
+        if((!localStorage.getItem('user-informations')) && (!localStorage.getItem('restaurant-created'))){
             history.push('/login');
         }
     })
