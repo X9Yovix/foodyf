@@ -22,6 +22,7 @@ const Header = () => {
                 
                     <Link to="/search" className='nav-link'>Search</Link>
                     <Link to="/loginjdid" className='nav-link'>login jdid</Link>
+                    <Link to="/contact" className='nav-link'>Contact</Link>
                     
                     {
                         !localStorage.getItem('restaurant-created') && localStorage.getItem('user-informations') &&

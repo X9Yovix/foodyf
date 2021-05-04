@@ -10,6 +10,7 @@ import SearchRestaurant from './Components/SearchRestaurant/SearchRestaurant';
 import Reservation from './Components/Reservation/Reservation';
 import UpdateRestaurant from './Components/UpdateRestaurant/UpdateRestaurant';
 import LoginJdid from './Components/LoginJdid/LoginJdid';
+import Contact from './Components/Contact/Contact';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Protected Cmp={AddRestaurant} />
           </Route>
           <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
+          <Route path="/contact" component={Contact} />
           <Route path="/loginjdid" component={LoginJdid} />
           <Route path="/" component={Home} />
         </Switch>
