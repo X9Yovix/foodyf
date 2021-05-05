@@ -1,0 +1,9 @@
+.navbar-expand .navbar-nav .dropdown-menu {
+    left: -74px !important;
+}
+
+.navbar {
+    background-color: #007fff3b;
+    background: #007fff3b;
+    border-color: #007fff3b;
+}
