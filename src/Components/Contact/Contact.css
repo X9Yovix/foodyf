@@ -4,7 +4,8 @@
     color: #323232;
     line-height: 34px;
     color: #a8a8a8;
-    margin-top: 10px;;
+    margin-top: 10px;
+    ;
     text-align: left;
 }
 
@@ -29,7 +30,8 @@
 
     text-align: left;
 }
-.contact_hours .hours{
+
+.contact_hours .hours {
     margin-right: 15px;
 }
 
@@ -44,4 +46,16 @@
     font-size: 15px;
     color: #777C81;
     margin-bottom: 20px;
+}
+
+.main {
+    background-image: url("../../assets/contact-background.jpg");
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.contact_title{
+    margin-top:100px;
 }

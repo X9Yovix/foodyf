@@ -1,0 +1,48 @@
+.main_register {
+    /* background-image: url("../../assets/bgregisterblurry.jpg"); */
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+}
+
+.form_register {
+    position: absolute;
+    top:180px;
+    left:123px;
+    padding: 1% 30%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 700px;
+    transition: .3s;
+}
+
+.input-div>div>input::placeholder {
+    color: #FFF;
+}
+.input-div>div>input{
+    color: #FFF;
+}
+.btn_register {
+	border-radius: 25px;
+	width: 60%;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: 0.5s;
+	margin: 1rem 0;
+}
+
+.btn_register:hover {
+	background-position: right;
+}

@@ -1,4 +1,6 @@
 import './App.css';
+import React from 'react';
+/* llazmni ngid preloader */
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './Components/Home/Home'
 import Register from './Components/Register/Register'
@@ -14,8 +16,21 @@ import Contact from './Components/Contact/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fontawesome/fontawesome';
 
+import SignUp from './Components/RegisterJdid/SignUp';
+
+
+/* const loader = document.querySelector(".preloader");
+
+const showLoader = () => loader.classList.remove("preloader");
+const addClass = () => loader.classList.add("loader-hide"); */
+
 function App() {
+  /* useEffect(() => {
+    showLoader();
+    addClass();
+  }, []); */
   return (
+
     <div className="App">
       <BrowserRouter>
         <Switch>
@@ -28,12 +43,14 @@ function App() {
           <Route path="/search" component={SearchRestaurant} />
           <Route path="/orderfood" component={OrderFood} />
           <Route path="/reservation" component={Reservation} />
+      
           <Route path="/addRestaurant">
             <Protected Cmp={AddRestaurant} />
           </Route>
           <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
           <Route path="/contact" component={Contact} />
           <Route path="/loginjdid" component={LoginJdid} />
+          <Route path="/SignUp" component={SignUp} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>

@@ -1,10 +1,63 @@
-.login,
+/* .login,
 .image {
     min-height: 100vh;
+} */
+section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+    min-height: 100vh;
+
+}
+
+.bg_particles {
+    background: linear-gradient(135deg, rgb(136, 174, 218) 0%, rgb(119, 136, 96) 100%);
+}
+
+.particles_login {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 97%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.form_group {
+    z-index: 2;
+    border-radius: 20% 20%;
 }
 
 .bg-image {
-    background-image: url('https://therichpost.com/wp-content/uploads/2021/02/login-split.jpg');
-    background-size: cover;
+    /* background-image: url('https://therichpost.com/wp-content/uploads/2021/02/login-split.jpg'); */
+    /* max-height: 450px !important;
+    max-width: 450px !important; */
+    background-image: url('../../assets/remote-team.png');
+    background-color: rgb(233, 211, 18);
+    /* background: linear-gradient(135deg, rgb(136, 174, 218) 0%, rgb(119, 136, 96) 100%); */
+    background-size: 60%;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
     background-position: center center;
+}
+
+.main_login {
+    /* background-image: url('../../assets/bg_login.jpg'); */
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    /*  max-height: 10%;
+     max-width: 50%;  */
+    /* margin-top: 150px;
+    padding-right: 200px;
+    padding-left: 200px; */
+    /* margin-bottom: 200px; */
+    padding-top: 10%;
 }

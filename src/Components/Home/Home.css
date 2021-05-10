@@ -1,8 +1,3 @@
-.header_navbar{
-    position: relative;
-    z-index: 999;
-    background-color:rgba(0, 0, 0, 0.2721463585434174) ;
-}
 .wrapper {
     position: absolute;
     top: 0;
