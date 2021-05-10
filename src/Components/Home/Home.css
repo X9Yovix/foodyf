@@ -18,6 +18,10 @@
     justify-content: center;
 }
 
+.navbar-postion {
+    z-index: 6;
+}
+
 /* .wrapper .middle {
     width: 100%;
     height: 50vh;

@@ -10,7 +10,6 @@ const Home = () => {
                 <Header />
             </div>
             <div className="wrapper">
-
                 <div className="side left">
                     <div className="image orderfood"></div>
                     <div className="caption">
