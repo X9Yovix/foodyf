@@ -32,9 +32,10 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav">
                     <FontAwesomeIcon icon="chevron-down" color="white" />
                 </Navbar.Toggle>
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav icons-navbar">
                     <Nav className='mr-auto'>
-                        <Link to="/search" className='nav-link'>Search</Link>
+                        {/* <Link to="/search" className='nav-link'>Search</Link> */}
+                        <Link to="/orderfood" className='nav-link'>Order Food</Link>
 
                         <Link to="/contact" className='nav-link'>Contact</Link>
 

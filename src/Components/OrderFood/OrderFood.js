@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 import './OrderFood.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const OrderFood = () => {
 
@@ -19,17 +20,10 @@ const OrderFood = () => {
                                 </div>
                                 <div className="search-form">
                                     <form action="#">
-                                        <input type="text" placeholder="Search..." />
-                                        <div className="select-option">
-                                            <select>
-                                                <option value="">Choose Categories</option>
-                                            </select>
-                                        </div>
-                                        <div className="select-option">
-                                            <select>
-                                                <option value="">Choose Location</option>
-                                            </select>
-                                        </div>
+                                        <FontAwesomeIcon icon="search" className="search-icon-restaurant-name" />
+                                        <input type="text" className="search-inputs effect-11" placeholder="Restaurant Name" />
+                                        <FontAwesomeIcon icon="map-marker-alt" className="search-icon-location" />
+                                        <input type="text" className="search-inputs" placeholder="Location" />
                                         <button type="submit">Explore Now</button>
                                     </form>
                                 </div>
