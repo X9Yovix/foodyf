@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer';
 import register from "../../assets/register_pic.svg";
-import './SignUp.css'
+import './Signup.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Visibility from '@material-ui/icons/Visibility';
@@ -10,7 +10,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { TextField } from '@material-ui/core'
 import { IconButton, InputAdornment } from '@material-ui/core';
 
-const SignUp = () => {
+const Signup = () => {
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const [showPassword, setShowPassword] = useState(false);
@@ -97,4 +97,4 @@ const SignUp = () => {
     );
 }
 
-export default SignUp
+export default Signup

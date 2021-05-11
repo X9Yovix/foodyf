@@ -53,8 +53,8 @@ const Header = () => {
 
                     </Nav>
                     <ShoppingCartIcon color="primary" fontSize="large" />
-                    <Button style={buttonStyle} variant="outlined" color="primary" size="small" startIcon={<VpnKeyIcon />} to="/loginjdid" ><Link style={linkStyle} to="/loginjdid" >login jdid</Link></Button>
-                    <Button variant="outlined" color="primary" size="small" startIcon={<SupervisedUserCircleIcon />} ><Link style={linkStyle} to="/SignUp">register jdid</Link></Button>
+                    <Button style={buttonStyle} variant="outlined" color="primary" size="small" startIcon={<VpnKeyIcon />} to="/loginjdid" ><Link style={linkStyle} to="/signin" >Sign in</Link></Button>
+                    <Button variant="outlined" color="primary" size="small" startIcon={<SupervisedUserCircleIcon />} ><Link style={linkStyle} to="/signup">Sign up</Link></Button>
                     {
                         localStorage.getItem('user-informations') &&
 

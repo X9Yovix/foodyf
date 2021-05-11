@@ -1,0 +1,89 @@
+.bg-order-food {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    background-image: url('../../assets/bg-orderFood.jpg');
+    height: 100vh;
+}
+.order-food-text{
+    margin-top: 23%;
+}
+.section-title {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.section-title h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+
+.search-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.search-form form input {
+    width: 40%;
+    float: left;
+    /* font-size: 15px; */
+    color: black;
+    padding-left: 30px;
+    height: 54px;
+    border: none;
+    transition: .2s;
+}
+
+.search-form form input::-webkit-input-placeholder {
+    color: black;
+}
+
+.search-form form input::-moz-placeholder {
+    color: black;
+}
+
+.search-form form input:-ms-input-placeholder {
+    color: black;
+}
+
+.search-form form input::-ms-input-placeholder {
+    color: black;
+}
+
+.search-form form input::placeholder {
+    color: black;
+}
+
+.search-form form .select-option {
+    position: relative;
+    width: 22.5%;
+    float: left;
+    height: 54px;
+    transition: .2s;
+}
+
+.search-form form .select-option:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: #eeeeee;
+    content: "";
+    z-index: 1;
+}
+
+.search-form form button {
+    width: 15%;
+    height: 54px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    background: #f03250;
+    color: #ffffff;
+    text-transform: uppercase;
+}

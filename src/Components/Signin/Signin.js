@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 /* import './stylelogin.css'; */
-import './newcsslogin.css';
+import './Signin.css';
 import Header from "../Header/Header";
 import avatar from "../../assets/avatar.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +12,7 @@ import Footer from '../Footer/Footer';
 import ReCAPTCHA from "react-google-recaptcha";
 
 /* import Particles from 'react-particles-js'; */
-const LoginJdid = () => {
+const Signin = () => {
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const [showPassword, setShowPassword] = useState(false);
@@ -203,4 +203,4 @@ const LoginJdid = () => {
         </>
     )
 }
-export default LoginJdid;
+export default Signin;

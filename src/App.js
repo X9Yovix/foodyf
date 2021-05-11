@@ -11,12 +11,12 @@ import OrderFood from './Components/OrderFood/OrderFood'
 import SearchRestaurant from './Components/SearchRestaurant/SearchRestaurant';
 import Reservation from './Components/Reservation/Reservation';
 import UpdateRestaurant from './Components/UpdateRestaurant/UpdateRestaurant';
-import LoginJdid from './Components/LoginJdid/LoginJdid';
+import Signin from './Components/Signin/Signin';
 import Contact from './Components/Contact/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fontawesome/fontawesome';
 
-import SignUp from './Components/RegisterJdid/SignUp';
+import Signup from './Components/Signup/Signup';
 
 
 /* const loader = document.querySelector(".preloader");
@@ -49,8 +49,8 @@ function App() {
           </Route>
           <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
           <Route path="/contact" component={Contact} />
-          <Route path="/loginjdid" component={LoginJdid} />
-          <Route path="/SignUp" component={SignUp} />
+          <Route path="/signin" component={Signin} />
+          <Route path="/signup" component={Signup} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>
