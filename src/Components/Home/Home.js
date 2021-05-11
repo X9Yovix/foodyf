@@ -2,12 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import './Home.css';
+import CustomChatbot from '../chatbot/Config';
+
 
 const Home = () => {
     return (
         <>
             <div className="header_navbar">
                 <Header />
+                <CustomChatbot />
             </div>
             <div className="wrapper">
                 <div className="side left">
