@@ -1,13 +1,14 @@
 import './App.css';
 import React from 'react';
 /* llazmni ngid preloader */
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+/* import { BrowserRouter, Route, Switch ,useLocation} from 'react-router-dom'; */
+import { Switch, Route, BrowserRouter} from "react-router-dom";
 import Home from './Components/Home/Home'
 import Register from './Components/Register/Register'
 import Login from './Components/Login/Login'
 import AddRestaurant from './Components/AddRestaurant/AddRestaurant'
 import Protected from './Components/Protected/Protected'
-import OrderFood from './Components/OrderFood/OrderFood'
+import FindRestaurant from './Components/FindRestaurant/FindRestaurant'
 import SearchRestaurant from './Components/SearchRestaurant/SearchRestaurant';
 import Reservation from './Components/Reservation/Reservation';
 import UpdateRestaurant from './Components/UpdateRestaurant/UpdateRestaurant';
@@ -17,8 +18,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './fontawesome/fontawesome';
 
 import Signup from './Components/Signup/Signup';
+import FetchData from './Components/FetchData/FetchData';
 
+import { AnimatePresence } from 'framer-motion';
 
+import Dashboard from './Components/Dashboard/Dashboard';
 /* const loader = document.querySelector(".preloader");
 
 const showLoader = () => loader.classList.remove("preloader");
@@ -32,28 +36,32 @@ function App() {
   return (
 
     <div className="App">
-      <BrowserRouter>
-        <Switch>
-          {/* <Route path="/home" component={Home} /> */}
-          <Route path="/login" component={Login} />
-          {/* <Route exact path="*">
+      <AnimatePresence>
+        <BrowserRouter>
+          <Switch>
+            {/* <Route path="/home" component={Home} /> */}
+            <Route path="/login" component={Login} />
+            {/* <Route exact path="*">
           <Redirect to="/home" />
         </Route> */}
-          <Route path="/register" component={Register} />
-          <Route path="/search" component={SearchRestaurant} />
-          <Route path="/orderfood" component={OrderFood} />
-          <Route path="/reservation" component={Reservation} />
-      
-          <Route path="/addRestaurant">
-            <Protected Cmp={AddRestaurant} />
-          </Route>
-          <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/signin" component={Signin} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/" component={Home} />
-        </Switch>
-      </BrowserRouter>
+            <Route path="/register" component={Register} />
+            <Route path="/search" component={SearchRestaurant} />
+            <Route path="/findrestaurant" component={FindRestaurant} />
+            <Route path="/reservation" component={Reservation} />
+
+            <Route path="/addRestaurant">
+              <Protected Cmp={AddRestaurant} />
+            </Route>
+            <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/fetchdata" component={FetchData} />
+            <Route path="/admin" component={Dashboard} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </BrowserRouter>
+      </AnimatePresence>
     </div>
   );
 }

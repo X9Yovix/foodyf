@@ -1,0 +1,63 @@
+.section-reservation {
+    background-image: url('../../assets/bg-reservation1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.reservation-text {
+    margin-top: 23%;
+}
+
+.section-title-reservation h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+}
+
+
+.search-form-reservation {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.search-form-reservation .explore-reservation {
+    width: 100%;
+    height: 54px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    background: #f03250;
+    margin-top: 10%;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.reservation-text .MuiIconButton-root {
+    color: white !important;
+}
+.reservation-text .MuiInputBase-input {
+    color: white !important;
+}
+
+.reservation-text .MuiFormLabel-root {
+     color: white !important; 
+}
+
+/* .field-holder{
+    width: 100%;
+    position: relative;
+    margin: 0 0 20px;
+    display: inline-block;
+    vertical-align: top;
+} */
+/* .reservation-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: .3s;
+} */

@@ -20,7 +20,7 @@
 }
 
 
-.formLogin {
+.formRegister {
     width: 250px;
 }
 
@@ -70,19 +70,19 @@
     color: #38d39f;
 }
 
-.MuiInput-underline::before,
-.MuiInput-underline::after {
+.formRegister .MuiInput-underline::before,
+.formRegister .MuiInput-underline::after {
     border-bottom: none !important;
     font-size: 1.2rem !important;
 }
 
-.MuiFormLabel-root {
+.formRegister .MuiFormLabel-root {
     color: white !important;
     font-size: 1.2rem !important;
 
 }
 
-.MuiIconButton-root {
+.formRegister .MuiIconButton-root {
     color: white !important;
 }
 .pass .MuiInputLabel-formControl {
@@ -142,7 +142,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-    form {
+    .formRegister {
         width: 290px;
     }
 

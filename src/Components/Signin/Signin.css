@@ -70,19 +70,19 @@
     color: #38d39f;
 }
 
-.MuiInput-underline::before,
-.MuiInput-underline::after {
+.formLogin .MuiInput-underline::before,
+.formLogin .MuiInput-underline::after {
     border-bottom: none !important;
     font-size: 1.2rem !important;
 }
 
-.MuiFormLabel-root {
+.formLogin .MuiFormLabel-root {
     color: white !important;
     font-size: 1.2rem !important;
 
 }
 
-.MuiIconButton-root {
+.formLogin .MuiIconButton-root {
     color: white !important;
 }
 
@@ -158,7 +158,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-    form {
+    .formLogin {
         width: 290px;
     }
 

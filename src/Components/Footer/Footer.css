@@ -1,6 +1,7 @@
 .footer {
     padding-top: 70px;
     padding-bottom: 0;
+    clear: both;
     /* clear: both; */
     /* border: 10px solid green; */
     /* height: 100vh; */

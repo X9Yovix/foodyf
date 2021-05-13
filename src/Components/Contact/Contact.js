@@ -26,7 +26,7 @@ const Contact = () => {
             <Header />
             <div className="main">
                 <div className="contact_title">
-                    <h2 className="mt-5 primary">Contact Us</h2>
+                    <h2 className="mt-5 primary text-white">Contact Us</h2>
                 </div>
                 <div className="container">
                     <MapWithAMarker

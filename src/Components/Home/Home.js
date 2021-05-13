@@ -3,21 +3,41 @@ import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import './Home.css';
 import CustomChatbot from '../chatbot/Config';
-
+import { motion } from 'framer-motion';
+const pageVariant = {
+    in: {
+        opacity: 1,
+        y: 0,
+    },
+    out: {
+        opacity: 0,
+        y: "-100%",
+    }
+};
+const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.8
+};
 
 const Home = () => {
+
     return (
         <>
-            <div className="header_navbar">
-                <Header />
-                <CustomChatbot />
-            </div>
+
+            {/*  <div className="header_navbar"> */}
+            <Header />
+            {/* </div> */}
+
+            <CustomChatbot  />
             <div className="wrapper">
                 <div className="side left">
                     <div className="image orderfood"></div>
                     <div className="caption">
-                        <h1>Order Food</h1>
-                        <Link to="/orderfood" className='button'>Order Food</Link>
+                        <motion.div variants={pageVariant} transition={pageTransition} exit="out" animate="in" initial="out">
+                            <h1>Order Food</h1>
+                            <Link to="/findrestaurant" className='button'>Order Food</Link>
+                        </motion.div>
                     </div>
                 </div>
                 {/* <div className="middle">
@@ -26,11 +46,14 @@ const Home = () => {
                 <div className="side right">
                     <div className="image reservation"></div>
                     <div className="caption">
-                        <h1>Reservation</h1>
-                        <Link to="/reservation" className='button'>Reservation</Link>
+                        <motion.div variants={pageVariant} transition={pageTransition} exit="out" animate="in" initial="out">
+                            <h1>Reservation</h1>
+                            <Link to="/findrestaurant" className='button'>Reservation</Link>
+                        </motion.div>
                     </div>
                 </div>
             </div>
+
             {/*  <h1>Home page</h1>
             <div class="content">
                 <div class="split left">

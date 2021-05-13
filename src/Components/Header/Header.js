@@ -26,18 +26,20 @@ const Header = () => {
         history.push('/login');
     }
     return (
-        <>
+        <div>
             <Navbar fixed="top" className="header_navbar" expand="lg">
-                <Navbar.Brand href="#home"><Logo /></Navbar.Brand>
+                <Navbar.Brand ><Link to="/home"><Logo /></Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav">
                     <FontAwesomeIcon icon="chevron-down" color="white" />
                 </Navbar.Toggle>
                 <Navbar.Collapse id="basic-navbar-nav icons-navbar">
                     <Nav className='mr-auto'>
                         {/* <Link to="/search" className='nav-link'>Search</Link> */}
-                        <Link to="/orderfood" className='nav-link'>Order Food</Link>
-
+                        <Link to="/findrestaurant" className='nav-link'>Find Restaurant</Link>
+                        <Link to="/admin" className='nav-link'>Admin</Link>
+                        {/* <Link to="/reservation" className='nav-link'>Reservation</Link> */}
                         <Link to="/contact" className='nav-link'>Contact</Link>
+                        <Link to="/fetchdata" className='nav-link'>fetch data</Link>
 
                         {
                             !localStorage.getItem('restaurant-created') && localStorage.getItem('user-informations') &&
@@ -47,8 +49,8 @@ const Header = () => {
                             !localStorage.getItem('user-informations') &&
 
                             <>
-                                <Link to="/login" className='nav-link'>Login</Link>
-                                <Link to="/register" className='nav-link' >Register</Link>
+                                {/* <Link to="/login" className='nav-link'>Login</Link>
+                                <Link to="/register" className='nav-link' >Register</Link> */}
                             </>
                         }
 
@@ -117,7 +119,7 @@ const Header = () => {
                 }
             </Navbar>
  */}
-        </>
+        </div>
     );
 }
 

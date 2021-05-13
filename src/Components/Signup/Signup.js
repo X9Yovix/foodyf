@@ -21,7 +21,7 @@ const Signup = () => {
                 <div className="container">
                     <div className="pos-login">
                         <div className="login-content">
-                            <form className="formLogin">
+                            <form className="formRegister">
                                 <img src={register} alt="register" />
                                 <h2 className="title">Sign Up</h2>
                                 <div className="input-div one">

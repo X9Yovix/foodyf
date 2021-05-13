@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
 /* import './stylelogin.css'; */
 import './Signin.css';
 import Header from "../Header/Header";
@@ -10,7 +11,14 @@ import { TextField } from '@material-ui/core'
 import { IconButton, InputAdornment, Button } from '@material-ui/core';
 import Footer from '../Footer/Footer';
 import ReCAPTCHA from "react-google-recaptcha";
+import CustomChatbot from '../chatbot/Config';
 
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+import axios from 'axios';
+import { useHistory } from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 /* import Particles from 'react-particles-js'; */
 const Signin = () => {
     const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -18,9 +26,60 @@ const Signin = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
+    const validationSchema = Yup.object({
+        email: Yup
+            .string('Enter your email')
+            .email('Enter a valid email')
+            .required('Email is required'),
+        password: Yup.string()
+            .required('Required'),
+    });
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            //alert(JSON.stringify(values, null, 2));
+        },
+    });
+
+    const history = useHistory("");
+    useEffect(() => {
+        if (localStorage.getItem('user-informations')) {
+            history.push('/home')
+        }
+    })
+
+    const [openErr, setOpenErr] = useState(false);
+    const handleClose = () => {
+        setOpenErr(false);
+    };
+
+    const signInRequest = async () => {
+        axios.post('http://localhost:8000/api/login', formik.values)
+            .then(res => {
+                console.log(res);
+                if (res.data.error) {
+                    history.push('/login');
+                    localStorage.clear();
+                    setOpenErr(true);
+                } else {
+                    localStorage.setItem("user-informations", JSON.stringify(res));
+                    history.push('/home');
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                history.push('/login');
+                localStorage.clear();
+            })
+    }
     return (
         <>
             <Header />
+            <CustomChatbot />
             <section className="sectionLogin">
                 <div className="container">
                     <div className="pos-login">
@@ -41,6 +100,11 @@ const Signin = () => {
                                             inputProps={{
                                                 style: { color: 'white' },
                                             }}
+                                            value={formik.values.email}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            error={formik.touched.email && Boolean(formik.errors.email)}
+                                            helperText={formik.touched.email && formik.errors.email}
                                         />
                                         {/* <input type="text" class="input" /> */}
                                     </div>
@@ -56,6 +120,11 @@ const Signin = () => {
                                             id="standard-basic"
                                             label="Password"
                                             type={showPassword ? "text" : "password"}
+                                            value={formik.values.password}
+                                            error={formik.touched.password && Boolean(formik.errors.password)}
+                                            helperText={formik.touched.password && formik.errors.password}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
                                             InputProps={{
                                                 style: { color: 'white' },
                                                 endAdornment: (
@@ -80,9 +149,14 @@ const Signin = () => {
                                         onChange={() => setButtonDisabled(false)}
                                     />
                                 </div>
-                                <Button color="primary" className="btn-login" type="submit" disabled={buttonDisabled} >Sign In</Button>
+                                <Button color="primary" className="btn-login" type="submit" onClick={signInRequest} disabled={buttonDisabled} >Sign In</Button>
                                 {/* <input type="submit" className="btn-login" disabled={buttonDisabled} value="Login" /> */}
                             </form>
+                            <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
+                                <Alert onClose={handleClose} severity="error">
+                                    Email/Password is is incorrect
+                                </Alert>
+                            </Snackbar>
                         </div>
                     </div>
                 </div>

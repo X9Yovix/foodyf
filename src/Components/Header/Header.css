@@ -57,7 +57,7 @@
 
 .navbar-nav a:after {
 	display: block !important;
-	border-radius: 20%;
+	border-radius: 5%;
 	position: absolute !important;
 	top: 0 !important;
 	left: 0 !important;
@@ -200,6 +200,6 @@
 	}
 } */
 
-.MuiSvgIcon-root{
+.header_navbar .MuiSvgIcon-root{
 	color:#59d2d9 !important;
 }
