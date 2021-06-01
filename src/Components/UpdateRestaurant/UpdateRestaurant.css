@@ -1,0 +1,22 @@
+.sectionUPR {
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*height: 100vh;*/
+}
+
+.pos-upr{
+    padding-top: 10%;
+}
+.upr-form{
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px 10px;
+}
+.upr-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: .3s; 
+}

@@ -14,6 +14,7 @@ import Reservation from './Components/Reservation/Reservation';
 import UpdateRestaurant from './Components/UpdateRestaurant/UpdateRestaurant';
 import Signin from './Components/Signin/Signin';
 import Contact from './Components/Contact/Contact';
+import RestaurantPage from './Components/RestaurantPage/RestaurantPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fontawesome/fontawesome';
 
@@ -53,10 +54,11 @@ function App() {
               <Protected Cmp={AddRestaurant} />
             </Route>
             <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
+            <Route path="/RestaurantPage" component={RestaurantPage} />
             <Route path="/contact" component={Contact} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
-            <Route path="/fetchdata" component={FetchData} />
+            <Route path="/fetchdata/:searchPattern" component={FetchData} />
             <Route path="/admin" component={Dashboard} />
             <Route path="/" component={Home} />
           </Switch>

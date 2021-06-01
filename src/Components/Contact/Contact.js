@@ -37,16 +37,16 @@ const Contact = () => {
                         mapElement={<div style={{ height: `100%` }} />}
                     />
                     <div className="row pt-3">
-                        <div class="col-md-4">
-                            <div class="contact_widget">
-                                <div class="contact_adresse">
+                        <div className="col-md-4">
+                            <div className="contact_widget">
+                                <div className="contact_adresse">
                                     <ul>
                                         <li><FontAwesomeIcon icon='map-marker-alt' size="2x" className="adresse" /> Avenue de France, Radès</li>
                                         <li><FontAwesomeIcon icon='envelope' size="2x" className="email" />contact@foody.tn</li>
                                         <li><FontAwesomeIcon icon='phone' size="2x" className="tel" />+216 12345678</li>
                                     </ul>
                                 </div>
-                                <div class="contact_hours">
+                                <div className="contact_hours">
                                     <h4>Opening Hours</h4>
                                     <ul>
                                         {/*  style={{ color: 'black' }}  */}
@@ -55,19 +55,19 @@ const Contact = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <form action="#" class="contact_form">
-                                <div class="row">
-                                    <div class="col-md-6">
+                        <div className="col-md-8">
+                            <form action="#" className="contact_form">
+                                <div className="row">
+                                    <div className="col-md-6">
                                         <input type="text" className="form-control" placeholder="First Name" />
                                     </div>
-                                    <div class="col-md-6">
+                                    <div className="col-md-6">
                                         <input type="text" className="form-control" placeholder="Last Name" />
                                     </div>
-                                    <div class="col-md-6">
+                                    <div className="col-md-6">
                                         <input type="text" className="form-control" placeholder="Your Email" />
                                     </div>
-                                    <div class="col-md-6">
+                                    <div className="col-md-6">
                                         <input type="text" className="form-control" placeholder="Phone Number" />
                                     </div>
                                 </div>

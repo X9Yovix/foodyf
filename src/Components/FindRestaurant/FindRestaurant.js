@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
@@ -6,6 +6,15 @@ import './FindRestaurant.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomChatbot from '../chatbot/Config';
 import { motion } from 'framer-motion';
+
+import Autocomplete from "react-google-autocomplete";
+
+
+import axios from 'axios';
+import { useHistory } from "react-router-dom";
+import { Button } from '@material-ui/core';
+
+
 const pageVariant = {
     in: {
         opacity: 1,
@@ -22,7 +31,18 @@ const pageTransition = {
     duration: 0.8
 };
 const FindRestaurant = () => {
+    const history = useHistory("");
+    const [nameRestaurant, setNameRestaurant] = useState();
+    //const [placeRestaurant, setPlaceRestaurant] = useState();
 
+    function lookFor() {
+
+        //localStorage.setItem("fetcheddata", nameRestaurant);
+        //localStorage.setItem("fetcheddata", placeRestaurant);
+        history.push(`/fetchdata/${nameRestaurant}`);
+
+
+    }
     return (
         <>
             <Header />
@@ -37,22 +57,28 @@ const FindRestaurant = () => {
                                         <h2>Discover The Best Services Near You</h2>
                                     </div>
                                     <div className="search-form">
-                                        <div class="row">
-                                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                        <div className="row">
+                                            <div className="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                                                 {/* <div class="field-holder"> */}
                                                 <FontAwesomeIcon icon="search" className="search-icon-restaurant-name " size="2x" />
-                                                <input type="text" placeholder="Resturant name" className="search-inputs-find-rest" />
+                                                <input type="text" placeholder="Resturant name/Location" className="search-inputs-find-rest" onChange={(e) => setNameRestaurant(e.target.value)} />
                                                 {/* </div> */}
                                             </div>
-                                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                            {/* <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 
                                                 <FontAwesomeIcon icon="map-marker-alt" className="search-icon-location" size="2x" />
-                                                <input type="text" placeholder="Location" className="search-inputs-find-rest" />
+                                                <input type="text" placeholder="Location" className="search-inputs-find-rest" onChange={(e) => setPlaceRestaurant(e.target.value)} />
+                                                
+                                            </div> */}
+                                            <div className="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 
-                                            </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                <Button
+                                                    variant="contained"
+                                                    color="primary"
+                                                    onClick={lookFor}
+                                                >Explore Now</Button>
 
-                                                <button type="submit">Explore Now</button>
+                                                {/* <button onSubmit={lookFor}>Explore Now</button> */}
 
                                             </div>
                                         </div>

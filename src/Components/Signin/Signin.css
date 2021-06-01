@@ -98,6 +98,15 @@
     margin-left: 20px;
 }
 
+.pass  #password-helper-text{
+    color:#ff3333 !important;
+    text-shadow: 0 0 10px #FFFFFF;
+    margin-left: 20px;
+}
+.one #email-helper-text{
+    color:#ff3333 !important;
+    text-shadow: 0 0 10px #FFFFFF;
+}
 /* .input-div>div>input {
     position: absolute;
     left: 0;

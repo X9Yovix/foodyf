@@ -63,5 +63,278 @@ import SaveIcon from '@material-ui/icons/Save'; */
         </div>
     );
 } */
-function UpdateRestaurant() {}
+
+
+import Header from '../Header/Header';
+import { FormControlLabel, FormGroup, Checkbox, Button, Grid } from '@material-ui/core';
+import LocalShippingRoundedIcon from '@material-ui/icons/LocalShippingRounded';
+import DirectionsWalkRoundedIcon from '@material-ui/icons/DirectionsWalkRounded';
+import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
+import EventSeatIcon from '@material-ui/icons/EventSeat';
+import SaveIcon from '@material-ui/icons/Save';
+
+import './UpdateRestaurant.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import { useHistory } from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
+var dataU = JSON.parse(localStorage.getItem('user-informations'));
+var dataRes = JSON.parse(localStorage.getItem('restaurant-created'));
+
+
+
+function UpdateRestaurant() {
+
+    //console.log(dataU);
+    //const [data, setData] = useState({ hits: [] });
+    const history = useHistory("");
+    const [dataUPR, setData] = useState([]);
+    const [loading, setLoading] = useState(true)
+    const getData = () => {
+
+        axios.get('http://localhost:8000/api/getrestidcard/' + dataU.data.id_card)
+            .then(res => {
+                setData(res.data);
+                setLoading(false)
+            })
+
+    }
+    useEffect(() => {
+        /* const result = await axios.get(
+            'http://localhost:8000/api/getrestid/' + dataU.data.id,
+        ); */
+
+        getData();
+
+
+
+        //setData({...result.data});
+        //setData(result);
+    }, []);
+    //console.log(dataUPR[0].restaurant_name);
+    //console.log(dataUPR.data[0].restaurant_name);
+    console.log(dataUPR);
+    //console.log(dataRes.data.id);
+
+
+    //let jsonState = JSON.stringify(state);
+    const formData = new FormData();
+    const [restaurantName, setRestaurantName] = useState("");
+    const [description, setDescription] = useState("");
+    const [picture, setPictures] = useState("");
+    const [adresse, setAdresse] = useState("");
+    const [state, setState] = useState({
+        Delivery: false,
+        Takeout: false,
+        Reservation: false,
+    });
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
+    const [openUpdate, setOpenUpdate] = useState(false);
+    const [openUpdateErr, setOpenUpdateErr] = useState(false);
+    const handleClose = () => {
+        setOpenUpdate(false);
+        setOpenUpdateErr(false);
+    };
+    const updateRequest = async () => {
+        formData.append('restaurant_name', restaurantName);
+        //formData.append('slug', slug);
+        formData.append('description', description);
+        formData.append('adresse', adresse);
+        formData.append('picture', picture);
+        //formData.append('service', jsonState);
+        axios.post('http://localhost:8000/api/updateres/' + dataRes.data.id, formData)
+            .then(res => {
+                console.log(res);
+                if (res.data.error) {
+                    setOpenUpdateErr(true);
+                    history.push('/UpdateRestaurant');
+                   
+                } else {
+                    setOpenUpdate(true);
+                    history.push('/UpdateRestaurant');
+                }
+            })
+
+    }
+
+    const deleteRestaurant = async () => {
+        axios.delete('http://localhost:8000/api/delete/' + dataRes.data.id)
+            .then(res => {
+                console.log(res);
+                if (res.data.resultat) {
+                    localStorage.removeItem('restaurant-created');
+                    history.push('/home');
+                    //setOpenErr(true);
+                } else {
+                    history.push('/UpdateRestaurant');
+                }
+            })
+
+    }
+
+
+
+
+
+    /* const [datarest, setData] = useState([]);
+    const [restaurant_name, setRestaurantName] = useState("");
+    const [description, setDescription] = useState("");
+    const [adresse, setAdresse] = useState("");
+    let ui = JSON.parse(localStorage.getItem('user-informations'));
+    console.log(ui.data)
+    useEffect(() => {
+        getResId()
+    }, []);
+
+    const getResId = async () => {
+        let res = await fetch('http://localhost:8000/api/getrestid/' + ui.data.id_card);
+        res = await res.json();
+        //console.log(res);
+        //let x = JSON.parse(res.state);
+        //console.log(x);
+        setData(res);
+
+    }
+    console.log("test data", datarest); */
+
+    return (
+        <>
+            <Header />
+            <section className="sectionUPR">
+                <Snackbar open={openUpdate} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success">RESTAURANT UPDATED!</Alert>
+                </Snackbar>
+                <Snackbar open={openUpdateErr} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success">Error!</Alert>
+                </Snackbar>
+                <div className="pos-upr">
+                    <Button onClick={deleteRestaurant} variant="contained" color="secondary" >Delete your restaurant </Button>
+                    <div className="upr-content" style={{ padding: 15, margin: 'auto', maxWidth: 600 }}>
+                        <div className="upr-form">
+                            <div className="form-group">
+
+                                <form noValidate autoComplete="off" >
+                                    <Grid item xs={12}>
+                                        <input defaultValue={loading ? null : dataUPR[0].restaurant_name} type="text" onChange={(e) => setRestaurantName(e.target.value)} />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <input defaultValue={loading ? null : dataUPR[0].description} type="text" onChange={(e) => setDescription(e.target.value)} />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <input defaultValue={loading ? null : dataUPR[0].adresse} type="text" onChange={(e) => setAdresse(e.target.value)} />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <FormGroup row>
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox checked={state.Delivery} onChange={handleChange} name="Delivery" icon={<StarBorderRoundedIcon />} checkedIcon={<LocalShippingRoundedIcon />} />
+                                                }
+                                                label="Delivery"
+                                            />
+                                            <FormControlLabel
+                                                control={<Checkbox checked={state.Takeout} onChange={handleChange} name="Takeout" icon={<StarBorderRoundedIcon />} checkedIcon={<DirectionsWalkRoundedIcon />} />}
+                                                label="Takeout"
+                                            />
+                                            <FormControlLabel
+                                                control={<Checkbox checked={state.Reservation} onChange={handleChange} name="Reservation" icon={<StarBorderRoundedIcon />} checkedIcon={<EventSeatIcon />} />}
+                                                label="Reservation"
+                                            />
+                                        </FormGroup>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <input
+                                            /* style={{ display: "none" }} */
+                                            id="upload-photo"
+                                            name="upload-photo"
+                                            type="file"
+                                            onChange={(e) => setPictures(e.target.files[0])}
+                                        />
+                                        {/*  <Button color="secondary" variant="contained" component="span">
+                                            Upload button
+                                                </Button> */}
+                                        <img src={loading ? null : "http://127.0.0.1:8000/storage/" + dataUPR[0].picture} alt="Restaurant" className="my-5 img-fluid" />
+
+                                    </Grid>
+
+                                </form>
+                                {/* {
+                                    datarest.map((item) =>
+                                        <form noValidate autoComplete="off" key={item.id}>
+                                            <Grid item xs={12}>
+                                                <TextField required variant="filled" id="standard-required" label="Restaurant Name" defaultValue="Hello World" onChange={(e) => setRestaurantName(e.target.value)} value={item.restaurant_name}  />
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <TextField id="filled-basic" label="Description"  variant="filled" />
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <TextField id="filled-basic" label="Adresse" variant="filled" />
+                                            </Grid>
+                                        </form>
+                                    )
+                                } */}
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    className=""
+                                    startIcon={<SaveIcon />}
+                                    onClick={updateRequest}
+                                >Update</Button>
+                            </div>
+                            {/*  <form noValidate className="">
+                                <Paper style={{ padding: 16 }}>
+                                    <Grid container alignItems="flex-start" spacing={2}>
+                                        <Grid item xs={12}>
+                                            <TextField id="filled-basic" label="Restaurant Name" variant="filled"/>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField id="filled-basic" label="Description" variant="filled" />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField id="filled-basic" label="Adresse" variant="filled" />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <label htmlFor="upload-photo">
+                                                <input
+                                                    style={{ display: "none" }}
+                                                    id="upload-photo"
+                                                    name="upload-photo"
+                                                    type="file"
+                                                />
+                                                <Button color="secondary" variant="contained" component="span">
+                                                    Upload button
+                                                </Button>
+                                            </label>
+                                        </Grid>
+
+                                        <Grid item xs={6} style={{ marginTop: 16 }}>
+                                            <Button
+                                                type="button"
+                                                variant="contained"
+                                            >Reset</Button>
+                                        </Grid>
+                                        <Grid item xs={6} style={{ marginTop: 16 }}>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                type="submit"
+                                            >Update</Button>
+                                        </Grid>
+                                    </Grid>
+                                </Paper>
+
+                            </form>
+                        */}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </>
+    );
+}
 export default UpdateRestaurant
