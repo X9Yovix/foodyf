@@ -82,7 +82,7 @@ function CustomChatbot() {
                 id: '8',
                 options: [
                     { value: 1, label: 'Find Food', trigger: '9' },
-                    { value: 3, label: 'Contact', trigger: '' },
+                    { value: 2, label: 'Contact', trigger: '11' },
                 ],
             },
             {
@@ -96,6 +96,15 @@ function CustomChatbot() {
             },
             {
                 id: '11',
+                message: 'Loading..',
+                trigger: '12',
+            },
+            {
+                id: '12',
+                component:<Redirect to="/contact" />,
+            },
+            {
+                id: '13',
                 message: 'Sayonara',
                 end: true,
             },

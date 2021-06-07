@@ -85,7 +85,7 @@ var dataU = JSON.parse(localStorage.getItem('user-informations'));
 var dataRes = JSON.parse(localStorage.getItem('restaurant-created'));
 
 
-
+const formData = new FormData();
 function UpdateRestaurant() {
 
     //console.log(dataU);
@@ -93,6 +93,30 @@ function UpdateRestaurant() {
     const history = useHistory("");
     const [dataUPR, setData] = useState([]);
     const [loading, setLoading] = useState(true)
+
+    const [restaurantName, setRestaurantName] = useState("");
+    const [description, setDescription] = useState("");
+    const [picture, setPictures] = useState("");
+    const [adresse, setAdresse] = useState("");
+    /* const [service, setService] = useState({
+        Delivery: false,
+        Takeout: false,
+        Reservation: false,
+    }); */
+    const [service, setService] = useState({});
+
+
+    const handleChange = (event) => {
+        setService({ ...service, [event.target.name]: event.target.checked });
+    };
+    const [openUpdate, setOpenUpdate] = useState(false);
+    const [openUpdateErr, setOpenUpdateErr] = useState(false);
+    const handleClose = () => {
+        setOpenUpdate(false);
+        setOpenUpdateErr(false);
+    };
+
+
     const getData = () => {
 
         axios.get('http://localhost:8000/api/getrestidcard/' + dataU.data.id_card)
@@ -108,44 +132,43 @@ function UpdateRestaurant() {
         ); */
 
         getData();
-
-
-
+        setRestaurantName(dataRes.data.restaurant_name);
+        setDescription(dataRes.data.description);
+        setAdresse(dataRes.data.adresse);
+        setService(JSON.parse(dataRes.data.service));
+        //console.log(JSON.parse(dataRes.data.service))
+        /* dataUPR.map((itemState) => {
+            setRestaurantName(itemState.restaurant_name)
+            setDescription(itemState.description)
+            setAdresse(itemState.adresse)
+        }
+        ); */
+    
         //setData({...result.data});
         //setData(result);
     }, []);
+
+
+        
+    
     //console.log(dataUPR[0].restaurant_name);
     //console.log(dataUPR.data[0].restaurant_name);
-    console.log(dataUPR);
+    //console.log(dataUPR);
+
+    //console.log(restaurantName);
     //console.log(dataRes.data.id);
 
 
     //let jsonState = JSON.stringify(state);
-    const formData = new FormData();
-    const [restaurantName, setRestaurantName] = useState("");
-    const [description, setDescription] = useState("");
-    const [picture, setPictures] = useState("");
-    const [adresse, setAdresse] = useState("");
-    const [state, setState] = useState({
-        Delivery: false,
-        Takeout: false,
-        Reservation: false,
-    });
-    const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-    };
-    const [openUpdate, setOpenUpdate] = useState(false);
-    const [openUpdateErr, setOpenUpdateErr] = useState(false);
-    const handleClose = () => {
-        setOpenUpdate(false);
-        setOpenUpdateErr(false);
-    };
+
+
     const updateRequest = async () => {
         formData.append('restaurant_name', restaurantName);
         //formData.append('slug', slug);
         formData.append('description', description);
         formData.append('adresse', adresse);
         formData.append('picture', picture);
+        formData.append('service', JSON.stringify(service));
         //formData.append('service', jsonState);
         axios.post('http://localhost:8000/api/updateres/' + dataRes.data.id, formData)
             .then(res => {
@@ -153,13 +176,16 @@ function UpdateRestaurant() {
                 if (res.data.error) {
                     setOpenUpdateErr(true);
                     history.push('/UpdateRestaurant');
-                   
+
                 } else {
                     setOpenUpdate(true);
-                    history.push('/UpdateRestaurant');
+                    //history.push('/UpdateRestaurant');
+                    localStorage.removeItem("restaurant-created");
+                    localStorage.setItem("restaurant-created", JSON.stringify(res));
+                    history.go(0);
                 }
             })
-
+        console.log("test data", formData);
     }
 
     const deleteRestaurant = async () => {
@@ -174,10 +200,9 @@ function UpdateRestaurant() {
                     history.push('/UpdateRestaurant');
                 }
             })
-
     }
 
-
+    
 
 
 
@@ -229,22 +254,26 @@ function UpdateRestaurant() {
                                         <input defaultValue={loading ? null : dataUPR[0].adresse} type="text" onChange={(e) => setAdresse(e.target.value)} />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FormGroup row>
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox checked={state.Delivery} onChange={handleChange} name="Delivery" icon={<StarBorderRoundedIcon />} checkedIcon={<LocalShippingRoundedIcon />} />
-                                                }
-                                                label="Delivery"
-                                            />
-                                            <FormControlLabel
-                                                control={<Checkbox checked={state.Takeout} onChange={handleChange} name="Takeout" icon={<StarBorderRoundedIcon />} checkedIcon={<DirectionsWalkRoundedIcon />} />}
-                                                label="Takeout"
-                                            />
-                                            <FormControlLabel
-                                                control={<Checkbox checked={state.Reservation} onChange={handleChange} name="Reservation" icon={<StarBorderRoundedIcon />} checkedIcon={<EventSeatIcon />} />}
-                                                label="Reservation"
-                                            />
-                                        </FormGroup>
+                                        {
+                                            dataUPR.map((item) =>
+                                                <FormGroup row key={item}>
+                                                    <FormControlLabel
+                                                        control={
+                                                            <Checkbox defaultChecked={JSON.parse(item.service).Delivery == true} onChange={handleChange} name="Delivery" icon={<StarBorderRoundedIcon />} checkedIcon={<LocalShippingRoundedIcon />} />
+                                                        }
+                                                        label="Delivery"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox defaultChecked={JSON.parse(item.service).Takeout == true} onChange={handleChange} name="Takeout" icon={<StarBorderRoundedIcon />} checkedIcon={<DirectionsWalkRoundedIcon />} />}
+                                                        label="Takeout"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox defaultChecked={JSON.parse(item.service).Reservation == true} onChange={handleChange} name="Reservation" icon={<StarBorderRoundedIcon />} checkedIcon={<EventSeatIcon />} />}
+                                                        label="Reservation"
+                                                    />
+                                                </FormGroup>
+                                            )
+                                        }
                                     </Grid>
                                     <Grid item xs={12}>
                                         <input

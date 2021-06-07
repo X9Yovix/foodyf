@@ -2,11 +2,11 @@
     background-image: url('../../assets/bg-reservation1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .reservation-text {
-    margin-top: 23%;
+    margin-top: 13%;
 }
 
 .section-title-reservation h2 {
@@ -18,9 +18,12 @@
 
 
 .search-form-reservation {
-    background: rgba(255, 255, 255, 0.1);
+    /*background: rgba(42, 148, 209, 0.5);*/
+    background-image: url("../../assets/bgreservation.jpg");
+    border: 5px solid white;
     padding: 20px;
     border-radius: 5px;
+    margin-bottom: 40px;
 }
 
 .search-form-reservation .explore-reservation {
@@ -30,7 +33,7 @@
     font-size: 14px;
     font-weight: 700;
     background: #f03250;
-    margin-top: 10%;
+    /* margin-top: 10%; */
     color: #fff;
     text-transform: uppercase;
 }

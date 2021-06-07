@@ -272,3 +272,9 @@
 }
 
 
+.disabled-link-router{
+    color: #000 !important;
+    text-decoration: none !important;
+
+    background-color: none !important;
+}

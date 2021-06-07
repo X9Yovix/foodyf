@@ -29,10 +29,10 @@ const Signup = () => {
             .min(8, 'Must be exactly 8 digits')
             .max(8, 'Must be exactly 8 digits'),
 
-            email : Yup
-                .string('Enter your email')
-                .email('Enter a valid email')
-                .required('Email is required'),
+        email: Yup
+            .string('Enter your email')
+            .email('Enter a valid email')
+            .required('Email is required'),
         password: Yup
             .string()
             .required('Please Enter your password')
@@ -50,7 +50,7 @@ const Signup = () => {
         validationSchema: validationSchema,
         onSubmit: (values) => {
             //alert(JSON.stringify(values, null, 2));
-            console.log(values);
+            //console.log(values);
         },
     });
 
@@ -65,20 +65,22 @@ const Signup = () => {
         }
     })
     const signUpRequest = async () => {
-        console.log(formik.values);
-        axios.post('http://localhost:8000/api/register', formik.values)
-            .then(res => {
-                console.log(res);
-                if (res.data.error) {
-                    history.push('/signup');
-                    localStorage.clear();
-                    setOpenErr(true);
-                } else {
-                    localStorage.setItem("user-informations", JSON.stringify(res));
-                    history.push('/home');
-                }
-            })
-
+        if (!formik.isValid) {
+            setOpenErr(true);
+        } else {
+            axios.post('http://localhost:8000/api/register', formik.values)
+                .then(res => {
+                    console.log(res);
+                    if (res.data.error) {
+                        history.push('/signup');
+                        localStorage.clear();
+                        setOpenErr(true);
+                    } else {
+                        localStorage.setItem("user-informations", JSON.stringify(res));
+                        history.push('/home');
+                    }
+                })
+        }
     }
     return (
         <div>
@@ -87,7 +89,7 @@ const Signup = () => {
                 <div className="container">
                     <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="error">
-                            Email/Password is is incorrect
+                            Error
                         </Alert>
                     </Snackbar>
                     <div className="pos-login">
@@ -176,7 +178,7 @@ const Signup = () => {
                                     </div>
                                 </div>
                                 <Button color="primary" className="btn-login margin-btn" onClick={signUpRequest}>Sign Up</Button>
-                                {/* <input type="submit" className="btn-register" value="Sign Up" /> */}
+                                {/* <input type="submit" className="btn-register btn-login margin-btn" value="Sign Up" /> */}
                             </form>
                         </div>
                     </div>

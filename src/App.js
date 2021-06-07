@@ -48,13 +48,13 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/search" component={SearchRestaurant} />
             <Route path="/findrestaurant" component={FindRestaurant} />
-            <Route path="/reservation" component={Reservation} />
+            <Route path="/:resname/reservation/:resid" component={Reservation} />
 
             <Route path="/addRestaurant">
               <Protected Cmp={AddRestaurant} />
             </Route>
             <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
-            <Route path="/RestaurantPage" component={RestaurantPage} />
+            <Route path="/RestaurantPage/:resid" component={RestaurantPage} />
             <Route path="/contact" component={Contact} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />

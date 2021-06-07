@@ -76,7 +76,7 @@ const Header = () => {
                             <NavDropdown title={data.data.first_name || "User"} id="basic-nav-dropdown">
 
                                 {/* <NavDropdown.Item >Profile</NavDropdown.Item> */}
-                                <NavDropdown.Item >Settings</NavDropdown.Item>
+                                {/* <NavDropdown.Item >Settings</NavDropdown.Item> */}
                                 {
                                     !localStorage.getItem('restaurant-created') && localStorage.getItem('user-informations') ?
                                         <NavDropdown.Item href="/addRestaurant">Add Restaurant</NavDropdown.Item>
