@@ -21,14 +21,14 @@ const Signup = () => {
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const [showPassword, setShowPassword] = useState(false);
 
-    const validationSchema = Yup.object({
-        /* id_card: Yup
+    /* id_card: Yup
             .string()
             .required('ID Card is required')
             .matches(/^[0-9]+$/, "Must be only digits")
             .min(8, 'Must be exactly 8 digits')
             .max(8, 'Must be exactly 8 digits'), */
-
+            
+    const validationSchema = Yup.object({
         email: Yup
             .string('Enter your email')
             .email('Enter a valid email')
