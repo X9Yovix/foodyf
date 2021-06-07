@@ -22,12 +22,12 @@ const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     const validationSchema = Yup.object({
-        id_card: Yup
+        /* id_card: Yup
             .string()
             .required('ID Card is required')
             .matches(/^[0-9]+$/, "Must be only digits")
             .min(8, 'Must be exactly 8 digits')
-            .max(8, 'Must be exactly 8 digits'),
+            .max(8, 'Must be exactly 8 digits'), */
 
         email: Yup
             .string('Enter your email')
@@ -97,7 +97,7 @@ const Signup = () => {
                             <form className="formRegister">
                                 <img src={register} alt="register" />
                                 <h2 className="title">Sign Up</h2>
-                                <div className="input-div one">
+                                {/* <div className="input-div one">
                                     <div className="i">
                                         <FontAwesomeIcon icon='id-card' className="icons" />
                                     </div>
@@ -118,7 +118,7 @@ const Signup = () => {
                                             }}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="input-div one">
                                     <div className="i">
                                         <FontAwesomeIcon icon='envelope' className="icons" />
