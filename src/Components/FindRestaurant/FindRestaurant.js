@@ -5,15 +5,16 @@ import Footer from '../Footer/Footer';
 import './FindRestaurant.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomChatbot from '../chatbot/Config';
-import { motion } from 'framer-motion';
-
-import Autocomplete from "react-google-autocomplete";
 
 
-import axios from 'axios';
+/* import Autocomplete from "react-google-autocomplete"; */
+
+
+/* import axios from 'axios'; */
 import { useHistory } from "react-router-dom";
 import { Button } from '@material-ui/core';
 
+import { motion } from 'framer-motion';
 
 const pageVariant = {
     in: {
@@ -58,7 +59,7 @@ const FindRestaurant = () => {
                                     </div>
                                     <div className="search-form">
                                         <div className="row">
-                                            <div className="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                            <div className="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                                 {/* <div class="field-holder"> */}
                                                 <FontAwesomeIcon icon="search" className="search-icon-restaurant-name " size="2x" />
                                                 <input type="text" placeholder="Resturant name/Location" className="search-inputs-find-rest" onChange={(e) => setNameRestaurant(e.target.value)} />
@@ -70,7 +71,7 @@ const FindRestaurant = () => {
                                                 <input type="text" placeholder="Location" className="search-inputs-find-rest" onChange={(e) => setPlaceRestaurant(e.target.value)} />
                                                 
                                             </div> */}
-                                            <div className="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 
                                                 <Button
                                                     variant="contained"

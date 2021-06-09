@@ -66,7 +66,7 @@ import SaveIcon from '@material-ui/icons/Save'; */
 
 
 import Header from '../Header/Header';
-import { FormControlLabel, FormGroup, Checkbox, Button, Grid } from '@material-ui/core';
+import { FormControlLabel, FormGroup, Checkbox, Button, Grid} from '@material-ui/core';
 import LocalShippingRoundedIcon from '@material-ui/icons/LocalShippingRounded';
 import DirectionsWalkRoundedIcon from '@material-ui/icons/DirectionsWalkRounded';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
@@ -80,12 +80,27 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import { motion } from 'framer-motion';
 
 var dataU = JSON.parse(localStorage.getItem('user-informations'));
 var dataRes = JSON.parse(localStorage.getItem('restaurant-created'));
 
-
 const formData = new FormData();
+const pageVariant = {
+    in: {
+        opacity: 1,
+        y: 0,
+    },
+    out: {
+        opacity: 0,
+        y: "-100%",
+    }
+};
+const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.8
+};
 function UpdateRestaurant() {
 
     //console.log(dataU);
@@ -119,7 +134,7 @@ function UpdateRestaurant() {
 
     const getData = () => {
 
-        axios.get('http://localhost:8000/api/getrestidcard/' + dataU.data.id_card)
+        axios.get('http://localhost:8000/api/getrestidcard/' + dataU.data.id)
             .then(res => {
                 setData(res.data);
                 setLoading(false)
@@ -132,10 +147,16 @@ function UpdateRestaurant() {
         ); */
 
         getData();
+        //kan yemchi
+        /* setRestaurantName(dataRes.data.restaurant_name);
+        setDescription(dataRes.data.description);
+        setAdresse(dataRes.data.adresse);
+        setService(JSON.parse(dataRes.data.service)); */
         setRestaurantName(dataRes.data.restaurant_name);
         setDescription(dataRes.data.description);
         setAdresse(dataRes.data.adresse);
         setService(JSON.parse(dataRes.data.service));
+        console.log(dataRes.data.id);
         //console.log(JSON.parse(dataRes.data.service))
         /* dataUPR.map((itemState) => {
             setRestaurantName(itemState.restaurant_name)
@@ -143,14 +164,14 @@ function UpdateRestaurant() {
             setAdresse(itemState.adresse)
         }
         ); */
-    
+
         //setData({...result.data});
         //setData(result);
     }, []);
 
 
-        
-    
+
+
     //console.log(dataUPR[0].restaurant_name);
     //console.log(dataUPR.data[0].restaurant_name);
     //console.log(dataUPR);
@@ -202,7 +223,7 @@ function UpdateRestaurant() {
             })
     }
 
-    
+
 
 
 
@@ -237,61 +258,94 @@ function UpdateRestaurant() {
                 <Snackbar open={openUpdateErr} autoHideDuration={3000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="success">Error!</Alert>
                 </Snackbar>
-                <div className="pos-upr">
-                    <Button onClick={deleteRestaurant} variant="contained" color="secondary" >Delete your restaurant </Button>
-                    <div className="upr-content" style={{ padding: 15, margin: 'auto', maxWidth: 600 }}>
-                        <div className="upr-form">
-                            <div className="form-group">
+                <motion.div variants={pageVariant} transition={pageTransition} exit="out" animate="in" initial="out">
+                    <div className="pos-upr">
+                        <Button onClick={deleteRestaurant} variant="contained" color="secondary" >Delete your restaurant </Button>
+                        <div className="upr-content" style={{ padding: 15, margin: 'auto', maxWidth: 600 }}>
+                            <div className="upr-form">
+                                <div className="form-group">
 
-                                <form noValidate autoComplete="off" >
-                                    <Grid item xs={12}>
-                                        <input defaultValue={loading ? null : dataUPR[0].restaurant_name} type="text" onChange={(e) => setRestaurantName(e.target.value)} />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <input defaultValue={loading ? null : dataUPR[0].description} type="text" onChange={(e) => setDescription(e.target.value)} />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <input defaultValue={loading ? null : dataUPR[0].adresse} type="text" onChange={(e) => setAdresse(e.target.value)} />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        {
-                                            dataUPR.map((item) =>
-                                                <FormGroup row key={item}>
-                                                    <FormControlLabel
-                                                        control={
-                                                            <Checkbox defaultChecked={JSON.parse(item.service).Delivery == true} onChange={handleChange} name="Delivery" icon={<StarBorderRoundedIcon />} checkedIcon={<LocalShippingRoundedIcon />} />
-                                                        }
-                                                        label="Delivery"
-                                                    />
-                                                    <FormControlLabel
-                                                        control={<Checkbox defaultChecked={JSON.parse(item.service).Takeout == true} onChange={handleChange} name="Takeout" icon={<StarBorderRoundedIcon />} checkedIcon={<DirectionsWalkRoundedIcon />} />}
-                                                        label="Takeout"
-                                                    />
-                                                    <FormControlLabel
-                                                        control={<Checkbox defaultChecked={JSON.parse(item.service).Reservation == true} onChange={handleChange} name="Reservation" icon={<StarBorderRoundedIcon />} checkedIcon={<EventSeatIcon />} />}
-                                                        label="Reservation"
-                                                    />
-                                                </FormGroup>
-                                            )
-                                        }
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <input
-                                            /* style={{ display: "none" }} */
-                                            id="upload-photo"
-                                            name="upload-photo"
-                                            type="file"
-                                            onChange={(e) => setPictures(e.target.files[0])}
-                                        />
-                                        {/*  <Button color="secondary" variant="contained" component="span">
+                                    <form noValidate autoComplete="off" >
+                                        <Grid item xs={12}>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Restaurant Name</span>
+                                                </div>
+                                                <input class="form-control" defaultValue={loading ? null : dataUPR[0].restaurant_name} type="text" onChange={(e) => setRestaurantName(e.target.value)} />
+                                            </div>
+                                            {/*  <input defaultValue={loading ? null : dataUPR[0].restaurant_name} type="text" onChange={(e) => setRestaurantName(e.target.value)} className="form-control" /> */}
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Description</span>
+                                                </div>
+                                                <input class="form-control" defaultValue={loading ? null : dataUPR[0].description} type="text" onChange={(e) => setDescription(e.target.value)} />
+                                            </div>
+                                            {/* <input defaultValue={loading ? null : dataUPR[0].description} type="text" onChange={(e) => setDescription(e.target.value)} /> */}
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Adresse</span>
+                                                </div>
+                                                <input class="form-control" defaultValue={loading ? null : dataUPR[0].adresse} type="text" onChange={(e) => setAdresse(e.target.value)} />
+                                            </div>
+                                            {/* <input defaultValue={loading ? null : dataUPR[0].adresse} type="text" onChange={(e) => setAdresse(e.target.value)} /> */}
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Update Picture</span>
+                                                </div>
+                                                <input class="form-control" type="file" onChange={(e) => setPictures(e.target.files[0])} />
+                                            </div>
+                                            {/* <input
+                                                id="upload-photo"
+                                                name="upload-photo"
+                                                type="file"
+                                                onChange={(e) => setPictures(e.target.files[0])}
+                                            /> */}
+                                            {/*  <Button color="secondary" variant="contained" component="span">
                                             Upload button
                                                 </Button> */}
-                                        <img src={loading ? null : "http://127.0.0.1:8000/storage/" + dataUPR[0].picture} alt="Restaurant" className="my-5 img-fluid" />
 
-                                    </Grid>
 
-                                </form>
-                                {/* {
+                                        </Grid>
+                                        <Grid item xs={12}
+                                            container
+                                            direction="row"
+                                            justify="center"
+                                            alignItems="center">
+                                            {
+                                                dataUPR.map((item) =>
+                                                    <FormGroup row key={item}>
+                                                        <FormControlLabel
+                                                            control={
+                                                                <Checkbox defaultChecked={JSON.parse(item.service).Delivery === true} onChange={handleChange} name="Delivery" icon={<StarBorderRoundedIcon />} checkedIcon={<LocalShippingRoundedIcon />} />
+                                                            }
+                                                            label="Delivery"
+                                                        />
+                                                        <FormControlLabel
+                                                            control={<Checkbox defaultChecked={JSON.parse(item.service).Takeout === true} onChange={handleChange} name="Takeout" icon={<StarBorderRoundedIcon />} checkedIcon={<DirectionsWalkRoundedIcon />} />}
+                                                            label="Takeout"
+                                                        />
+                                                        <FormControlLabel
+                                                            control={<Checkbox defaultChecked={JSON.parse(item.service).Reservation === true} onChange={handleChange} name="Reservation" icon={<StarBorderRoundedIcon />} checkedIcon={<EventSeatIcon />} />}
+                                                            label="Reservation"
+                                                        />
+                                                    </FormGroup>
+                                                )
+                                            }
+
+                                        </Grid>
+
+                                        <Grid item xs={12}>
+                                            <img src={loading ? null : "http://127.0.0.1:8000/storage/" + dataUPR[0].picture} alt="Restaurant" className="my-5 img-fluid" />
+                                        </Grid>
+
+                                    </form>
+                                    {/* {
                                     datarest.map((item) =>
                                         <form noValidate autoComplete="off" key={item.id}>
                                             <Grid item xs={12}>
@@ -306,16 +360,16 @@ function UpdateRestaurant() {
                                         </form>
                                     )
                                 } */}
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    size="small"
-                                    className=""
-                                    startIcon={<SaveIcon />}
-                                    onClick={updateRequest}
-                                >Update</Button>
-                            </div>
-                            {/*  <form noValidate className="">
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="small"
+                                        className=""
+                                        startIcon={<SaveIcon />}
+                                        onClick={updateRequest}
+                                    >Update</Button>
+                                </div>
+                                {/*  <form noValidate className="">
                                 <Paper style={{ padding: 16 }}>
                                     <Grid container alignItems="flex-start" spacing={2}>
                                         <Grid item xs={12}>
@@ -359,9 +413,10 @@ function UpdateRestaurant() {
 
                             </form>
                         */}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </section>
         </>
     );

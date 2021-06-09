@@ -3,12 +3,7 @@ import { Button } from "@material-ui/core";
 import Header from "../Header/Header";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Contact.css';
-import {
-    withScriptjs,
-    withGoogleMap,
-    GoogleMap,
-    Marker,
-} from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, } from "react-google-maps";
 
 import axios from 'axios';
 
@@ -17,6 +12,23 @@ import Alert from '@material-ui/lab/Alert';
 
 import { useHistory } from "react-router-dom";
 
+import { motion } from 'framer-motion';
+import Footer from '../Footer/Footer';
+const pageVariant = {
+    in: {
+        opacity: 1,
+        y: 0,
+    },
+    out: {
+        opacity: 0,
+        y: "-100%",
+    }
+};
+const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.8
+};
 const MapWithAMarker = withScriptjs(withGoogleMap(props =>
     <GoogleMap
         defaultZoom={15}
@@ -58,63 +70,65 @@ const Contact = () => {
 
             <Header />
             <div className="main">
-                <div className="contact_title">
-                    <h2 className="mt-5 primary text-white">Contact Us</h2>
-                </div>
-                <Snackbar open={openMessage} autoHideDuration={3000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="success">Thanks for contacting us!</Alert>
-                </Snackbar>
-                <div className="container">
-                    <MapWithAMarker
-                        className="py-2"
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TrEADNl14ic8hmLhEGw_S2Julmu45rE&v=3.exp&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `400px` }} />}
-                        mapElement={<div style={{ height: `100%` }} />}
-                    />
-                    <div className="row pt-3">
-                        <div className="col-md-4">
-                            <div className="contact_widget">
-                                <div className="contact_adresse">
-                                    <ul>
-                                        <li><FontAwesomeIcon icon='map-marker-alt' size="2x" className="adresse" /> Avenue de France, Radès</li>
-                                        <li><FontAwesomeIcon icon='envelope' size="2x" className="email" />contact@foody.tn</li>
-                                        <li><FontAwesomeIcon icon='phone' size="2x" className="tel" />+216 12345678</li>
-                                    </ul>
-                                </div>
-                                {/* <div className="contact_hours">
+                <motion.div variants={pageVariant} transition={pageTransition} exit="out" animate="in" initial="out">
+                    <div className="contact_title">
+                        <h2 className="mt-5 primary text-white">Contact Us</h2>
+                    </div>
+                    <Snackbar open={openMessage} autoHideDuration={3000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success">Thanks for contacting us!</Alert>
+                    </Snackbar>
+                    <div className="container">
+                        <MapWithAMarker
+                            className="py-2"
+                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TrEADNl14ic8hmLhEGw_S2Julmu45rE&v=3.exp&libraries=geometry,drawing,places"
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{ height: `350px` }} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+                        />
+                        <div className="row pt-3">
+                            <div className="col-md-4">
+                                <div className="contact_widget">
+                                    <div className="contact_adresse">
+                                        <ul>
+                                            <li><FontAwesomeIcon icon='map-marker-alt' size="2x" className="adresse" /> Avenue de France, Radès</li>
+                                            <li><FontAwesomeIcon icon='envelope' size="2x" className="email" />contact@foody.tn</li>
+                                            <li><FontAwesomeIcon icon='phone' size="2x" className="tel" />+216 12345678</li>
+                                        </ul>
+                                    </div>
+                                    {/* <div className="contact_hours">
                                     <h4>Opening Hours</h4>
                                     <ul>
                                          style={{ color: 'black' }} 
                                         <li><FontAwesomeIcon icon='clock' size="2x" className="hours" spin /> Mon - Fri: 8:00am - 6:00pm</li>
                                     </ul>
                                 </div> */}
+                                </div>
+                            </div>
+                            <div className="col-md-8">
+                                <form action="#" className="contact_form">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <input type="text" className="form-control" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <input type="text" className="form-control" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <input type="text" className="form-control" placeholder="Your Email" onChange={(e) => setEmail(e.target.value)} />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <input type="text" className="form-control" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <textarea placeholder="Message" className="form-control" onChange={(e) => setMessage(e.target.value)}></textarea>
+                                    <Button color="primary" className="mt-2" variant="contained" onClick={SubmitContact}><FontAwesomeIcon icon={['far', 'paper-plane']} />  SEND MESSAGE</Button>
+                                </form>
                             </div>
                         </div>
-                        <div className="col-md-8">
-                            <form action="#" className="contact_form">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <input type="text" className="form-control" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <input type="text" className="form-control" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <input type="text" className="form-control" placeholder="Your Email" onChange={(e) => setEmail(e.target.value)} />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <input type="text" className="form-control" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)} />
-                                    </div>
-                                </div>
-                                <textarea placeholder="Message" className="form-control" onChange={(e) => setMessage(e.target.value)}></textarea>
-                                <Button color="primary" className="" onClick={SubmitContact}><FontAwesomeIcon icon={['far', 'paper-plane']} />  SEND MESSAGE</Button>
-                            </form>
-                        </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
-
+     
         </div>
     );
 }

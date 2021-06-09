@@ -6,17 +6,27 @@
     /*height: 100vh;*/
 }
 
-.pos-upr{
+.pos-upr {
     padding-top: 10%;
 }
-.upr-form{
+
+.upr-form {
     background-color: rgba(0, 0, 0, 0.4);
     padding: 10px 10px;
 }
+
 .upr-content {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: .3s; 
+    transition: .3s;
+}
+
+.upr-form .form-group .input-group {
+    margin: 22px;
+}
+
+.upr-form .form-group .input-group-text {
+    width: 169px;
 }

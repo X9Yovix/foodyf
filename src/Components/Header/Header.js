@@ -11,7 +11,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import { Button } from '@material-ui/core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 const Header = () => {
     const linkStyle = {
         textDecoration: "none",
@@ -58,6 +58,11 @@ const Header = () => {
                         }
 
                     </Nav>
+                    {
+                        localStorage.getItem('reservation') &&
+                        <NotificationsActiveIcon className="mr-5" />
+                    }
+                    {/* <Link to="/reservationdone" ><NotificationsActiveIcon className="mr-5" /></Link> */}
                     <ShoppingCartIcon color="primary" fontSize="large" />
 
                     {
@@ -66,9 +71,9 @@ const Header = () => {
                         <Nav className="pull-right ml-5">
                             <>
                                 {!data.data.picture ?
-                                    <img src={defaultPic} width="40" height="40" alt="profile" className="rounded-circle bg-white" />
+                                    <img src={defaultPic} width="40" height="40" alt="profile" className="rounded-circle bg-white m-auto" />
                                     :
-                                    <img src={"http://127.0.0.1:8000/storage/" + data.data.picture} width="40" height="40" alt="profile" className="rounded-circle" />
+                                    <img src={"http://127.0.0.1:8000/storage/" + data.data.picture} width="40" height="40" alt="profile" className="rounded-circle m-auto" />
 
                                 }
                             </>

@@ -9,7 +9,7 @@ const Protected = (props) =>{
 
     useEffect(() => {
         if((!localStorage.getItem('user-informations')) && (!localStorage.getItem('restaurant-created'))){
-            history.push('/login');
+            history.push('/signin');
         }
     })
 

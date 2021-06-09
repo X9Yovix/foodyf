@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { Paper, Grid, Button, TextField } from '@material-ui/core';
-import SaveIcon from '@material-ui/icons/Save';
+/* import { Paper, Grid, Button, TextField } from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/Save'; */
 import './RestaurantPage.css';
 import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
 
+const pageVariant = {
+    in: {
+        opacity: 1,
+        y: 0,
+    },
+    out: {
+        opacity: 0,
+        y: "-100%",
+    }
+};
+const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.8
+};
 function RestaurantPage(props) {
     const [dataSearch, setDataSearch] = useState([]);
     useEffect(async () => {
@@ -21,68 +37,70 @@ function RestaurantPage(props) {
     return (
         <>
             <Header />
-            {
-                dataSearch.map((item) =>
+            <motion.div variants={pageVariant} transition={pageTransition} exit="out" animate="in" initial="out">
+                {
+                    dataSearch.map((item) =>
 
-                    <section style={{ marginTop: 150 }}>
-                        <div className="container-fluid">
-                            <div className="row">
-                                <div className="col-12">
-                                    <img src={"http://127.0.0.1:8000/storage/" + item.picture} alt="Restaurant Picture" className="img-restaurant-page" />
+                        <section style={{ marginTop: 150 }}>
+                            <div className="container-fluid">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <img src={"http://127.0.0.1:8000/storage/" + item.picture} alt="RestaurantPicture" className="img-restaurant-page" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-12">
-                                    <h4>Restaurant name: </h4>
-                                    <p>{item.restaurant_name}</p>
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <h4>Restaurant name: </h4>
+                                        <p>{item.restaurant_name}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-12">
+                                        {
+                                            JSON.parse(item.service).Reservation === true &&
+                                            <>
+
+                                                <Link to={`/${item.restaurant_name}/reservation/${item.id}`} className='disabled-link-router' ><button className="btn btn-primary mx-2">Reservation</button></Link>
+
+                                            </>
+                                        }
+                                        {
+                                            JSON.parse(item.service).Takeout === true &&
+                                            <>
+
+                                                <button className="btn btn-success mx-2">Takeout</button>
+
+                                            </>
+                                        }
+                                        {
+                                            JSON.parse(item.service).Delivery === true &&
+                                            <>
+
+                                                <button className="btn btn-info m-auto mx-2">Delivery</button>
+
+                                            </>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-12">
+                                        <h4>Description: </h4>
+                                        <p>{item.description}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <h4>Adresse: </h4>
+                                        <p>{item.adresse}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="col-12">
-                                    {
-                                        JSON.parse(item.service).Reservation === true &&
-                                        <>
-
-                                            <Link to={`/${item.restaurant_name}/reservation/${item.id}`} className='disabled-link-router' ><button className="btn btn-primary mx-2">Reservation</button></Link>
-
-                                        </>
-                                    }
-                                    {
-                                        JSON.parse(item.service).Takeout === true &&
-                                        <>
-
-                                            <button className="btn btn-success mx-2">Takeout</button>
-
-                                        </>
-                                    }
-                                    {
-                                        JSON.parse(item.service).Delivery === true &&
-                                        <>
-
-                                            <button className="btn btn-info m-auto mx-2">Delivery</button>
-
-                                        </>
-                                    }
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-12">
-                                    <h4>Description: </h4>
-                                    <p>{item.description}</p>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-12">
-                                    <h4>Adresse: </h4>
-                                    <p>{item.adresse}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                )}
+                        </section>
+                    )}
+            </motion.div>
             {/* <section className="sectionUPR">
                 <div className="pos-upr">
                     <div className="upr-content" style={{ padding: 15, margin: 'auto', maxWidth: 900 }}>

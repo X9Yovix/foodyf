@@ -7,7 +7,23 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, } from "react-google-ma
 import axios from 'axios';
 
 import { Link, useHistory } from "react-router-dom";
+import { motion } from 'framer-motion';
 
+const pageVariant = {
+    in: {
+        opacity: 1,
+        y: 0,
+    },
+    out: {
+        opacity: 0,
+        y: "-100%",
+    }
+};
+const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.8
+};
 const MapWithAMarker = withScriptjs(withGoogleMap(props =>
     <GoogleMap
         defaultZoom={10}
@@ -201,6 +217,7 @@ const FetchData = (props) => {
         <>
             <Header />
             <section className="fetchedData">
+
                 <div className="bg-fetched-data">
                     <div className="filter">
                         <div className="filter__title">
@@ -219,15 +236,21 @@ const FetchData = (props) => {
                             <button type="submit" class="filter__reset">Reset All</button> */}
                         </div>
                     </div>
+
                     <div className="listing">
-                        <div className="container">
-                            <div className="row">
-                                {
-                                    !typerestaurant ? allFetchedData : filteredFetchedData
-                                }
+                        <motion.div variants={pageVariant} transition={pageTransition} exit="out" animate="in" initial="out">
+                            <div className="container">
+                                <div className="row">
+
+                                    {
+                                        !typerestaurant ? allFetchedData : filteredFetchedData
+                                    }
+
+                                </div>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
+
                     <div className="listing__map">
                         <MapWithAMarker
                             className="py-2"
@@ -238,6 +261,7 @@ const FetchData = (props) => {
                         />
                     </div>
                 </div>
+
             </section>
 
 

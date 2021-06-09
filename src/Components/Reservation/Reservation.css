@@ -19,7 +19,9 @@
 
 .search-form-reservation {
     /*background: rgba(42, 148, 209, 0.5);*/
-    background-image: url("../../assets/bgreservation.jpg");
+    /* background-image: url("../../assets/bgreservation.jpg"); */
+    background-color: #8BC6EC;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
     border: 5px solid white;
     padding: 20px;
     border-radius: 5px;
@@ -41,12 +43,13 @@
 .reservation-text .MuiIconButton-root {
     color: white !important;
 }
+
 .reservation-text .MuiInputBase-input {
     color: white !important;
 }
 
 .reservation-text .MuiFormLabel-root {
-     color: white !important; 
+    color: white !important;
 }
 
 /* .field-holder{

@@ -19,6 +19,7 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import { Link } from 'react-router-dom';
 /* import Particles from 'react-particles-js'; */
 const Signin = () => {
     const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -59,7 +60,7 @@ const Signin = () => {
     };
 
     const signInRequest = async () => {
-        console.log(formik.values);
+        //console.log(formik.values);
         axios.post('http://localhost:8000/api/login', formik.values)
             .then(res => {
                 console.log(res);
@@ -75,7 +76,7 @@ const Signin = () => {
                         .then(res => {
                             localStorage.setItem("restaurant-created", JSON.stringify(res));
                         })
-                    
+
                     history.push('/home');
                     window.location.reload(false);
                 }
@@ -85,7 +86,7 @@ const Signin = () => {
         <>
             <Header />
             <CustomChatbot />
-            <section className="sectionLogin">
+            <section className="sectionLogin pb-5">
                 <div className="container">
                     <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="error">
@@ -168,6 +169,7 @@ const Signin = () => {
                                 </div>
 
                                 <Button color="primary" className="btn-login" onClick={signInRequest} disabled={buttonDisabled} >Sign In</Button>
+                                <Link to="/signup"><button className="btn btn-info mb-2" >Create Account!</button></Link>
                             </form>
 
                         </div>

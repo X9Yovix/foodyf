@@ -3,11 +3,12 @@ import React from 'react';
 /* llazmni ngid preloader */
 /* import { BrowserRouter, Route, Switch ,useLocation} from 'react-router-dom'; */
 import { Switch, Route, BrowserRouter} from "react-router-dom";
-import Home from './Components/Home/Home'
-import Register from './Components/Register/Register'
-import Login from './Components/Login/Login'
-import AddRestaurant from './Components/AddRestaurant/AddRestaurant'
-import Protected from './Components/Protected/Protected'
+import Home from './Components/Home/Home';
+import Register from './Components/Register/Register';
+import Login from './Components/Login/Login';
+import AddRestaurant from './Components/AddRestaurant/AddRestaurant';
+import Protected from './Components/Protected/Protected';
+import ProtectedR from './Components/ProtectedR/ProtectedR';
 import FindRestaurant from './Components/FindRestaurant/FindRestaurant'
 import SearchRestaurant from './Components/SearchRestaurant/SearchRestaurant';
 import Reservation from './Components/Reservation/Reservation';
@@ -15,6 +16,8 @@ import UpdateRestaurant from './Components/UpdateRestaurant/UpdateRestaurant';
 import Signin from './Components/Signin/Signin';
 import Contact from './Components/Contact/Contact';
 import RestaurantPage from './Components/RestaurantPage/RestaurantPage';
+import ReservationDone from './Components/ReservationDone/ReservationDone';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fontawesome/fontawesome';
 
@@ -49,11 +52,15 @@ function App() {
             <Route path="/search" component={SearchRestaurant} />
             <Route path="/findrestaurant" component={FindRestaurant} />
             <Route path="/:resname/reservation/:resid" component={Reservation} />
-
+            {/* <Route path="/reservationdone" component={ReservationDone} /> */}
             <Route path="/addRestaurant">
               <Protected Cmp={AddRestaurant} />
             </Route>
-            <Route path="/UpdateRestaurant" component={UpdateRestaurant} />
+
+            <Route path="/UpdateRestaurant">
+              <ProtectedR Cmp={UpdateRestaurant} />
+            </Route>
+            {/* <Route path="/UpdateRestaurant" component={UpdateRestaurant} /> */}
             <Route path="/RestaurantPage/:resid" component={RestaurantPage} />
             <Route path="/contact" component={Contact} />
             <Route path="/signin" component={Signin} />

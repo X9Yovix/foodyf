@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { IconButton, InputAdornment, TextField, Button } from '@material-ui/core';
-import CustomChatbot from '../chatbot/Config';
 
 import * as Yup from 'yup';
 import { useFormik } from "formik";
@@ -34,10 +33,10 @@ const Signup = () => {
     const validationSchema = Yup.object({
         first_name: Yup
             .string('First name')
-            .required('First Name is required'),
+            .required('Email is required'),
         last_name: Yup
             .string('Last name')
-            .required('Last Name is required'),
+            .required('Email is required'),
         email: Yup
             .string('Enter your email')
             .email('Enter a valid email')
@@ -58,17 +57,12 @@ const Signup = () => {
             password: '',
         },
         validationSchema: validationSchema,
-        onSubmit: (values, actions) => {
-            /* setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                actions.setSubmitting(false);
-            }, 6000); */
+        onSubmit: (values) => {
             formData.append("first_name", values.first_name);
             formData.append("last_name", values.last_name);
             formData.append("email", values.email);
             formData.append("password", values.password);
             formData.append("picture", picture);
-
             //alert(JSON.stringify(values, null, 2));
             //console.log(values);
         },
@@ -106,8 +100,7 @@ const Signup = () => {
     return (
         <div>
             <Header />
-            <CustomChatbot />
-            <section className="sectionLogin pb-5">
+            <section className="sectionLogin">
                 <div className="container">
                     <Snackbar open={openErr} autoHideDuration={3000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="error">
@@ -116,13 +109,46 @@ const Signup = () => {
                     </Snackbar>
                     <div className="pos-login">
                         <div className="login-content">
-                            <form className="formRegister" onSubmit={formik.handleSubmit}>
+                            <form className="formRegister">
                                 <img src={register} alt="register" />
                                 <h2 className="title">Sign Up</h2>
+                                {/* <div className="input-div one">
+                                    <div className="i">
+                                        <FontAwesomeIcon icon='id-card' className="icons" />
+                                    </div>
+                                    <div className="div">
+                                        <TextField
+                                            autoComplete="off"
+                                            className="input"
+                                            id="id_card"
+                                            name="id_card"
+                                            label="ID Card"
+                                            value={formik.values.id_card}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            error={formik.touched.id_card && Boolean(formik.errors.id_card)}
+                                            helperText={formik.touched.id_card && formik.errors.id_card}
+                                            inputProps={{
+                                                style: { color: 'white' },
+                                            }}
+                                        />
+                                    </div>
+                                </div> */}
+                                
+
                                 <div className="input-div one">
                                     <div className="i">
-                                        <FontAwesomeIcon icon='info-circle' className="icons" />
+                                        <FontAwesomeIcon icon='envelope' className="icons" />
                                     </div>
+                                    {/* <div>
+                                        <input
+                                            id="upload-photo-profile"
+                                            name="upload-photo-profile"
+                                            type="file"
+                                            multiple
+                                            onChange={(e) => setPictures(e.target.files[0])}
+                                        />
+                                    </div> */}
                                     <div className="div">
                                         <TextField
                                             autoComplete="off"
@@ -139,12 +165,22 @@ const Signup = () => {
                                                 style: { color: 'white' },
                                             }}
                                         />
+                                        {/* <input type="text" class="input" /> */}
                                     </div>
                                 </div>
                                 <div className="input-div one">
                                     <div className="i">
-                                        <FontAwesomeIcon icon='info-circle' className="icons" />
+                                        <FontAwesomeIcon icon='envelope' className="icons" />
                                     </div>
+                                    {/* <div>
+                                        <input
+                                            id="upload-photo-profile"
+                                            name="upload-photo-profile"
+                                            type="file"
+                                            multiple
+                                            onChange={(e) => setPictures(e.target.files[0])}
+                                        />
+                                    </div> */}
                                     <div className="div">
                                         <TextField
                                             autoComplete="off"
@@ -161,12 +197,22 @@ const Signup = () => {
                                                 style: { color: 'white' },
                                             }}
                                         />
+                                        {/* <input type="text" class="input" /> */}
                                     </div>
                                 </div>
                                 <div className="input-div one">
                                     <div className="i">
                                         <FontAwesomeIcon icon='envelope' className="icons" />
                                     </div>
+                                    {/* <div>
+                                        <input
+                                            id="upload-photo-profile"
+                                            name="upload-photo-profile"
+                                            type="file"
+                                            multiple
+                                            onChange={(e) => setPictures(e.target.files[0])}
+                                        />
+                                    </div> */}
                                     <div className="div">
                                         <TextField
                                             autoComplete="off"
@@ -183,13 +229,15 @@ const Signup = () => {
                                                 style: { color: 'white' },
                                             }}
                                         />
+                                        {/* <input type="text" class="input" /> */}
                                     </div>
                                 </div>
                                 <div className="input-div">
                                     <div className="i">
                                         <FontAwesomeIcon icon='lock' className="icons" />
                                     </div>
-                                    <div className="div pass">
+                                    <div class="div pass">
+                                        {/* <input type="password" className="input" /> */}
                                         <TextField
                                             className="passTextField"
                                             id="password"
@@ -218,23 +266,21 @@ const Signup = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="input-div one margin-file-pic">
+                                <div className="input-div one">
                                     <div className="i">
                                         <FontAwesomeIcon icon='user-circle' className="icons" />
                                     </div>
-
+                                   
                                     <div className="div">
-                                        <div className="form-group">
-                                            {/* <label for="exampleFormControlFile1">Picture: </label> */}
-                                            <input type="file" className="form-control-file ml-2 mt-3" id="exampleFormControlFile1" onChange={(e) => setPictures(e.target.files[0])} />
-                                        </div>
+                                    <div class="form-group">
+                                    <label for="exampleFormControlFile1">Picture: </label>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" onChange={(e) => setPictures(e.target.files[0])} />
+                                </div>
                                     </div>
                                 </div>
-
-                                {/* <Button color="primary" className="btn-login margin-btn" onSubmit={signUpRequest}>Sign Up</Button> */}
-                                {/* <input type="submit" className="btn-register btn-login margin-btn" value="Sign Up"  onClick={signUpRequest}/> */}
-                                {/* <input type="submit" className="btn-login margin-btn" value="Sign Up" onClick={signUpRequest} /> */}
-                                <Button color="primary" className="btn-login margin-btn" variant="contained" fullWidth type="submit" onClick={signUpRequest}>Sign Up</Button>
+                                
+                                <Button color="primary" className="btn-login margin-btn" onClick={signUpRequest}>Sign Up</Button>
+                                {/* <input type="submit" className="btn-register btn-login margin-btn" value="Sign Up" /> */}
                             </form>
                         </div>
                     </div>
